@@ -21,6 +21,7 @@ Route::get('/search', [JobController::class, 'index'])->name('job.index');
 
 //auth routes
 Route::middleware('auth')->prefix('account')->group(function () {
+// Route::middleware('auth')->group(function () {
   //every auth routes AccountController
   Route::get('logout', [AccountController::class, 'logout'])->name('account.logout');
   Route::get('overview', [AccountController::class, 'index'])->name('account.index');
@@ -37,73 +38,109 @@ Route::middleware('auth')->prefix('account')->group(function () {
   Route::post('apply-job', [AccountController::class, 'applyJob'])->name('account.applyJob');
 
   //Admin Role Routes
-  Route::group(['middleware' => ['role:admin']], function () {
-    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('account.dashboard');
-    Route::get('view-all-users', [AdminController::class, 'viewAllUsers'])->name('account.viewAllUsers');
-    Route::delete('view-all-users', [AdminController::class, 'destroyUser'])->name('account.destroyUser');
+  Route::group(
+    ['middleware' => ['role:admin']],
+    function () {
+      Route::get('dashboard', [AdminController::class, 'dashboard'])->name('account.dashboard');
+      Route::get('view-all-users', [AdminController::class, 'viewAllUsers'])->name('account.viewAllUsers');
+      Route::delete('view-all-users', [AdminController::class, 'destroyUser'])->name('account.destroyUser');
 
-    Route::get('category/{category}/edit', [CompanyCategoryController::class, 'edit'])->name('category.edit');
-    Route::post('category', [CompanyCategoryController::class, 'store'])->name('category.store');
-    Route::put('category/{id}', [CompanyCategoryController::class, 'update'])->name('category.update');
-    Route::delete('category/{id}', [CompanyCategoryController::class, 'destroy'])->name('category.destroy');
-  }
+      Route::get('category/{category}/edit', [CompanyCategoryController::class, 'edit'])->name('category.edit');
+      Route::post('category', [CompanyCategoryController::class, 'store'])->name('category.store');
+      Route::put('category/{id}', [CompanyCategoryController::class, 'update'])->name('category.update');
+      Route::delete('category/{id}', [CompanyCategoryController::class, 'destroy'])->name('category.destroy');
+    }
   );
 
   //Author Role Routes
-  Route::group(['middleware' => ['role:author']], function () {
-    Route::get('author-section', [AuthorController::class, 'authorSection'])->name('account.authorSection');
+  Route::group(
+    ['middleware' => ['role:author']],
+    function () {
+      Route::get('author-section', [AuthorController::class, 'authorSection'])->name('account.authorSection');
 
-    Route::get('job-application/{id}', [JobApplicationController::class, 'show'])->name('jobApplication.show');
-    Route::delete('job-application', [JobApplicationController::class, 'destroy'])->name('jobApplication.destroy');
-    Route::get('job-application', [JobApplicationController::class, 'index'])->name('jobApplication.index');
+      Route::get('job-application/{id}', [JobApplicationController::class, 'show'])->name('jobApplication.show');
+      Route::delete('job-application', [JobApplicationController::class, 'destroy'])->name('jobApplication.destroy');
+      Route::get('job-application', [JobApplicationController::class, 'index'])->name('jobApplication.index');
 
-    Route::get('post/create', [PostController::class, 'create'])->name('post.create');
-    Route::post('post', [PostController::class, 'store'])->name('post.store');
-    Route::get('post/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
-    Route::put('post/{post}', [PostController::class, 'update'])->name('post.update');
-    Route::delete('post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+      Route::get('post/create', [PostController::class, 'create'])->name('post.create');
+      Route::post('post', [PostController::class, 'store'])->name('post.store');
+      Route::get('post/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
+      Route::put('post/{post}', [PostController::class, 'update'])->name('post.update');
+      Route::delete('post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
 
-    Route::get('company/create', [CompanyController::class, 'create'])->name('company.create');
-    Route::put('company/{id}', [CompanyController::class, 'update'])->name('company.update');
-    Route::post('company', [CompanyController::class, 'store'])->name('company.store');
-    Route::get('company/edit', [CompanyController::class, 'edit'])->name('company.edit');
-    Route::delete('company', [CompanyController::class, 'destroy'])->name('company.destroy');
-  }
+      Route::get('company/create', [CompanyController::class, 'create'])->name('company.create');
+      Route::put('company/{id}', [CompanyController::class, 'update'])->name('company.update');
+      Route::post('company', [CompanyController::class, 'store'])->name('company.store');
+      Route::get('company/edit', [CompanyController::class, 'edit'])->name('company.edit');
+      Route::delete('company', [CompanyController::class, 'destroy'])->name('company.destroy');
+    }
   );
 
   //User Role routes
-  Route::group(['middleware' => ['role:user']], function () {
-    Route::get('become-employer', [AccountController::class, 'becomeEmployerView'])->name('account.becomeEmployer');
-    Route::post('become-employer', [AccountController::class, 'becomeEmployer'])->name('account.becomeEmployer');
-  }
+  Route::group(
+    ['middleware' => ['role:user']],
+    function () {
+      Route::get('become-employer', [AccountController::class, 'becomeEmployerView'])->name('account.becomeEmployer');
+      Route::post('become-employer', [AccountController::class, 'becomeEmployer'])->name('account.becomeEmployer');
+    }
   );
 });
 
-// CV
-Route::get('/cvtemp1/{image}/{color}', function ($image, $color) {
-  return view('Templates/cvTemplates/template1', compact('color','image'));
-});
-Route::get('/cvtemp2/{image}/{color}/{bg_color}', function ($image, $color, $bg_color) {
-  return view('Templates/cvTemplates/template2', compact('image','color','bg_color'));
-});
-Route::get('/cvtemp3/{image}/{color}/{bg_color}', function ($image, $color, $bg_color) {
-  return view('Templates/cvTemplates/template3', compact('image','color','bg_color'));
-});
-// Cover Letter
+
+Route::middleware('auth')->group(function () {
+
+  // CV
+  Route::get('/cvtemp1/{image}/{color}', function ($image, $color) {
+    return view('Templates/cvTemplates/template1', compact('color', 'image'));
+  });
+  Route::get('/cvtemp2/{image}/{color}/{bg_color}', function ($image, $color, $bg_color) {
+    return view('Templates/cvTemplates/template2', compact('image', 'color', 'bg_color'));
+  });
+  Route::get('/cvtemp3/{image}/{color}/{bg_color}', function ($image, $color, $bg_color) {
+    return view('Templates/cvTemplates/template3', compact('image', 'color', 'bg_color'));
+  });
+
+  // Cover Letter
+  Route::get('/cltemp1', function () {
+    return view('Templates/CoverLetterTemplates/clTemplate1');
+  });
+  Route::get('/cltemp2', function () {
+    return view('Templates/CoverLetterTemplates/clTemplate2');
+  });
+  Route::get('/cltemp3', function () {
+    return view('Templates/CoverLetterTemplates/clTemplate3');
+  });
+  Route::get('/cltemp4', function () {
+    return view('Templates/CoverLetterTemplates/clTemplate4');
+  });
 
 
-Route::get('/cltemp1', function () {
-  return view('Templates/CoverLetterTemplates/clTemplate1');
 });
-Route::get('/cltemp2', function () {
-  return view('Templates/CoverLetterTemplates/clTemplate2');
-});
-Route::get('/cltemp3', function () {
-  return view('Templates/CoverLetterTemplates/clTemplate3');
-});
-Route::get('/cltemp4', function () {
-  return view('Templates/CoverLetterTemplates/clTemplate4');
-});
+// // CV
+// Route::get('/cvtemp1/{image}/{color}', function ($image, $color) {
+//   return view('Templates/cvTemplates/template1', compact('color','image'));
+// });
+// Route::get('/cvtemp2/{image}/{color}/{bg_color}', function ($image, $color, $bg_color) {
+//   return view('Templates/cvTemplates/template2', compact('image','color','bg_color'));
+// });
+// Route::get('/cvtemp3/{image}/{color}/{bg_color}', function ($image, $color, $bg_color) {
+//   return view('Templates/cvTemplates/template3', compact('image','color','bg_color'));
+// });
+// // Cover Letter
+
+
+// Route::get('/cltemp1', function () {
+//   return view('Templates/CoverLetterTemplates/clTemplate1');
+// });
+// Route::get('/cltemp2', function () {
+//   return view('Templates/CoverLetterTemplates/clTemplate2');
+// });
+// Route::get('/cltemp3', function () {
+//   return view('Templates/CoverLetterTemplates/clTemplate3');
+// });
+// Route::get('/cltemp4', function () {
+//   return view('Templates/CoverLetterTemplates/clTemplate4');
+// });
 
 // Cover letter page
 Route::get('/cover-letter-page', function () {

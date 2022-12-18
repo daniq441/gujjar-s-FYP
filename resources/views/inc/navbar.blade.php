@@ -9,7 +9,7 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="d-flex align-items-center nav-links"><a href="/cv-page" class="text-dark">Create CV</a></li>
+        <li class="d-flex align-items-center nav-links ps-3"><a href="/cv-page" class="text-dark">Create CV</a></li>
         <li class="d-flex align-items-center nav-links px-3"><a href="/cover-letter-page" class="text-dark">Create Cover letter</a></li>
         @auth
         <li class="nav-item dropdown dropdown-left">
