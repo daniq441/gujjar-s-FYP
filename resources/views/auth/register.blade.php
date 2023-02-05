@@ -10,19 +10,19 @@
                 <h2 class="my-3 slogon">
                     Register for a better opportunity
                 </h2>
-            
+
                 <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i> Its free and always be</p>
-                <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i>  Your Confidentiality is Assured</p>            
-                <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i> We Provide Career Opportunities</p> 
-                <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i> Most Trusted Job Portal in Nepal</p>
+                <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i>  Your Confidentiality is Assured</p>
+                <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i> We Provide Career Opportunities</p>
+                <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i> Most Trusted Cv Maker Job Portal in world</p>
             </div>
         </div>
 
         <div class="col-sm-12 col-md-6 px-0">
             <div class="login-container">
                 <div class="login-header mb-3">
-                    <h3><img src="{{asset('images/logo/joblister.png')}}" width="50px;" alt=""> Create your free jobseeker account</h3>
-                    <p class="text-muted">Register with basic information, Complete your profile and start applying for the job for free!</p>
+                    <h3>Create your free Cv builder account</h3>
+                    <p class="text-muted">Register with basic information, Complete your profile and start applying for the job and make professional Resume for free!</p>
                 </div>
                 <div class="login-form">
                     <form action="{{route('register')}}" method="POST">
@@ -83,7 +83,7 @@
                             </div>
                         </div>
                         <div>
-                            <small class="text-muted d-block mb-3">By clicking on 'Create Jobseeker Account' below you are agreeing to the terms and smallrivacy of Joblister!</p>
+                            <small class="text-muted d-block mb-3">By clicking on 'Create Cv builder Account' below you are agreeing to the terms and conditions of Cv Builder!</p>
                         </div>
                         <button type="submit" class="btn primary-btn btn-block">Register</button>
                     </form>

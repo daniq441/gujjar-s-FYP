@@ -12148,10 +12148,23 @@ button {
 }
 
 /* navbar setting */
-.nav-links a:hover
+/* .nav-links a:hover
 {
-  /* text-decoration: underline; */
-  /* font-weight: 500; */
-}
+  text-decoration: underline;
+  font-weight: 500;
+} */
 
 /* Cover letter template setting */
+.container .row .card i
+{
+    font-size: 50px;
+}
+/* .row .col .card-link:hover
+{
+    color: currentColor;
+} */
+
+.container .row .card-width
+{
+    width: 10px;
+}

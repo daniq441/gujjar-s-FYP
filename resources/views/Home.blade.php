@@ -21,16 +21,16 @@
           <div class="col-sm-12 col-md-6">
             <div class="py-5 px-5 text-center">
               <div class="text-light">
-                <h4>A dream doesn't become reality through magic, it takes sweat, determination and hard work.
+                <h4>It takes effort, perseverance, and hard work for a dream to come true.
               </h4>
               </div>
             </div>
             </div>
-        </div>   
+        </div>
       </form>
     </div>
   </section>
-  
+
   {{-- jobs list --}}
   <section class="jobs-section py-5">
     <div class="container-fluid px-0">
@@ -79,7 +79,7 @@
 
             </div>
           </div>
-       
+
         <div class="col-sm-12 col-md-3 mr-auto">
 
           <div class="card mb-4">
@@ -93,7 +93,7 @@
                   <a href="{{route('account.employer',['employer'=>$employer])}}">
                     <img src="{{asset($employer->logo)}}" width="60px" class="img-fluid" alt="">
                   </a>
-                </div> 
+                </div>
               @endforeach
               </div>
             </div>
