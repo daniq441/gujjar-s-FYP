@@ -113,8 +113,16 @@ Route::middleware('auth')->group(function () {
     // Education form page
     Route::get('/education-create/{image}/{color}/{bg_color}/{templatePath}', [EducationController::class, 'bgcreate']);
     Route::get('/education-create/{image}/{color}/{templatePath}', [EducationController::class, 'create']);
+    // Education detail
+    Route::post('/education-detail/{image}/{color}/{bg_color}/{templatePath}', [EducationController::class, 'bgstore']);
+    Route::post('/education-detail/{image}/{color}/{templatePath}', [EducationController::class, 'store']);
+    // Education description
+    Route::get('/education-description/{image}/{color}/{bg_color}/{templatePath}', [EducationController::class, 'bgindex']);
+    Route::get('/education-description/{image}/{color}/{templatePath}', [EducationController::class, 'index']);
 
-
+    // Education Delete
+    Route::get('/education-delete/{image}/{color}/{bg_color}/{templatePath}/{id}', [EducationController::class, 'bgdelete']);
+    Route::get('/education-delete/{image}/{color}/{templatePath}/{id}', [EducationController::class, 'delete']);
 
 
 

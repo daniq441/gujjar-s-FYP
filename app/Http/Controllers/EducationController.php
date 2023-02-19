@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Education;
+// use App\Models\User\education;
 use Illuminate\Http\Request;
 
 class EducationController extends Controller
@@ -12,9 +13,15 @@ class EducationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($image, $color, $templatePath)
     {
-        //
+        $education = auth()->user()->education;
+        return view('pages/education/educationdetail', compact('image', 'color', 'templatePath', 'education'));
+    }
+    public function bgindex($image, $color, $bg_color, $templatePath)
+    {
+        $education = auth()->user()->education;
+        return view('pages/education/educationdetail', compact('image', 'color', 'bg_color', 'templatePath', 'education'));
     }
 
     /**
@@ -37,9 +44,31 @@ class EducationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($image, $color, $templatePath, Request $request)
     {
-        //
+        // Store data in education table after making relationship
+        auth()->user()->education()->create([
+            'school_name' => request('SCHO'),
+            'school_location' => request('SCLO'),
+            'degree' => request('DEGREE'),
+            'field_of_study' => request('STUY'),
+        ]);
+        return redirect('/education-description' . '/' . $image . '/' . $color . '/' . $templatePath);
+        // $education = auth()->user()->education;
+        // dd($education);
+    }
+    public function bgstore($image, $color, $bg_color, $templatePath, Request $request)
+    {
+        auth()->user()->education()->create([
+            'school_name' => request('SCHO'),
+            'school_location' => request('SCLO'),
+            'degree' => request('DEGREE'),
+            'field_of_study' => request('STUY'),
+        ]);
+        return redirect('/education-description' . '/' . $image . '/' . $color . '/' . $bg_color . '/' . $templatePath);
+        // return back();
+        // $education = auth()->user()->education;
+        // dd($education);
     }
 
     /**
@@ -82,8 +111,18 @@ class EducationController extends Controller
      * @param  \App\Models\Education  $education
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Education $education)
+    public function bgdelete($image, $color, $bg_color, $templatePath, $id)
     {
-        //
+        // dd('ok');
+        $edu_data = Education::whereId($id);
+        $edu_data->delete();
+        return redirect('/education-description' . '/' . $image . '/' . $color . '/' . $bg_color . '/' . $templatePath);
+    }
+    public function delete($image, $color, $templatePath, $id)
+    {
+        // dd('ok');
+        $edu_data = Education::whereId($id);
+        $edu_data->delete();
+        return redirect('/education-description' . '/' . $image . '/' . $color . '/' . $templatePath);
     }
 }

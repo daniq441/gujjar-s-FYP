@@ -35,17 +35,6 @@ class UserDetailController extends Controller
      */
     public function store($image, $color, $templatePath, Request $request)
     {
-        //
-        $request->validate([
-            'FNAM' => 'required',
-            'LNAM' => 'required',
-            'ADD' => 'required',
-            'CITY' => 'required',
-            'CNTY' => 'required',
-            'ZIPC' => 'required',
-            'HPHN' => 'required',
-            'EMAI' => 'required | email',
-        ]);
         // dd($request->all());
         $user_detail = new UserDetail();
         $user_detail->firstname = $request->FNAM;
@@ -58,24 +47,10 @@ class UserDetailController extends Controller
         $user_detail->email = $request->EMAI;
         $user_detail->user_id = auth()->id();
         $user_detail->save();
-        // return view('pages/education/edu_create', compact('image', 'color', 'templatePath'));
-
         return redirect('/education-create' . '/' . $image . '/' . $color . '/' . $templatePath);
     }
     public function bgstore($image, $color, $bg_color, $templatePath, Request $request)
     {
-        //
-        // dd($request->all());
-        $request->validate([
-            'FNAM' => 'required',
-            'LNAM' => 'required',
-            'ADD' => 'required',
-            'CITY' => 'required',
-            'CNTY' => 'required',
-            'ZIPC' => 'required',
-            'HPHN' => 'required',
-            'EMAI' => 'required | email',
-        ]);
         // dd($request->all());
         $user_detail = new UserDetail();
         $user_detail->firstname = $request->FNAM;
@@ -88,8 +63,6 @@ class UserDetailController extends Controller
         $user_detail->email = $request->EMAI;
         $user_detail->user_id = auth()->id();
         $user_detail->save();
-        // return view('pages/education/edu_create', compact('image', 'color', 'bg_color', 'templatePath'));
-
         return redirect('/education-create' . '/' . $image . '/' . $color . '/' . $bg_color . '/' . $templatePath);
     }
 

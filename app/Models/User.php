@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+// use app\Models\Education;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -56,5 +58,10 @@ class User extends Authenticatable
     public function applied()
     {
         return $this->hasMany('App\Models\JobApplication');
+    }
+    // for build relationship for many educations to user
+    public function education()
+    {
+        return $this->hasMany(Education::class);
     }
 }
