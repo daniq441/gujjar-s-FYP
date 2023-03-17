@@ -18,7 +18,7 @@
                         <div class="col-6">
                             <div class="form-group">
                                 <label class="control-label" for="textFNAM">First Name</label>
-                                <input type="text" name="FNAM" placeholder="(i.e). Haider" maxlength="35" class="form-control" id="textFNAM" required value="">
+                                <input type="text" name="FNAM" placeholder="(i.e). Haider" maxlength="35" class="form-control word-check" id="textFNAM" required value="">
                             </div>
                         </div>
                         <div class="col-6">
@@ -68,8 +68,6 @@
                             <div class="form-group">
                                 <label class="control-label" for="EMAI">Email</label>
                                 <input type="email" name="EMAI" placeholder="(i.e). abc123@gmail.com" maxlength="50" class="form-control" id="EMAI" required value="">
-                                <i class="icon-error" aria-hidden="true"></i>
-                                <label class="invalid-feedback" id="invalid-email">Please enter your email address.</label>
                             </div>
                         </div>
                     </div>

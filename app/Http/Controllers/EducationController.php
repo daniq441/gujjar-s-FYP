@@ -88,9 +88,17 @@ class EducationController extends Controller
      * @param  \App\Models\Education  $education
      * @return \Illuminate\Http\Response
      */
-    public function edit(Education $education)
+
+    public function edit($image, $color, $templatePath, $id, Education $education)
     {
-        //
+        $edu_data = Education::whereId($id)->first();
+        return view('pages/education/edu_edit', compact('image', 'color', 'templatePath', 'edu_data'));
+    }
+    public function bgedit($image, $color, $bg_color, $templatePath, $id, Education $education)
+    {
+        $edu_data = Education::whereId($id)->first();
+        // dd($edu_data->school_name);
+        return view('pages/education/edu_edit', compact('image', 'color', 'bg_color', 'templatePath', 'edu_data'));
     }
 
     /**
@@ -100,29 +108,50 @@ class EducationController extends Controller
      * @param  \App\Models\Education  $education
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Education $education)
-    {
-        //
-    }
 
+    public function update($image, $color, $templatePath, $id, Request $request, Education $education)
+    {
+        $edu_data = Education::whereId($id)->first();
+        $edu_data->school_name = $request->SCHO;
+        $edu_data->school_location = $request->SCLO;
+        $edu_data->degree = $request->DEGREE;
+        $edu_data->field_of_study = $request->STUY;
+        $edu_data->save();
+        return redirect('/education-description' . '/' . $image . '/' . $color . '/' . $templatePath);
+    }
+    public function bgupdate($image, $color,  $bg_color, $templatePath, $id, Request $request, Education $education)
+    {
+        $edu_data = Education::whereId($id)->first();
+        $edu_data->school_name = $request->SCHO;
+        $edu_data->school_location = $request->SCLO;
+        $edu_data->degree = $request->DEGREE;
+        $edu_data->field_of_study = $request->STUY;
+        $edu_data->save();
+        return redirect('/education-description' . '/' . $image . '/' . $color . '/' . $bg_color . '/' . $templatePath);
+    }
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Education  $education
      * @return \Illuminate\Http\Response
      */
-    public function bgdelete($image, $color, $bg_color, $templatePath, $id)
-    {
-        // dd('ok');
-        $edu_data = Education::whereId($id);
-        $edu_data->delete();
-        return redirect('/education-description' . '/' . $image . '/' . $color . '/' . $bg_color . '/' . $templatePath);
-    }
+
     public function delete($image, $color, $templatePath, $id)
     {
         // dd('ok');
-        $edu_data = Education::whereId($id);
+        // $edu_data = auth()->user()->education::whereId($id)->first(); //not working
+
+        $edu_data = Education::whereId($id)->first();
+        // dd($edu_data);
         $edu_data->delete();
         return redirect('/education-description' . '/' . $image . '/' . $color . '/' . $templatePath);
+    }
+    public function bgdelete($image, $color, $bg_color, $templatePath, $id)
+    {
+        // dd('ok');
+        // $edu_data = auth()->user()->education::whereId($id)->first(); //not working
+        $edu_data = Education::whereId($id)->first();
+        $edu_data->delete();
+        return redirect('/education-description' . '/' . $image . '/' . $color . '/' . $bg_color . '/' . $templatePath);
     }
 }

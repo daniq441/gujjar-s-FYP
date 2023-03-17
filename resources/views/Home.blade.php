@@ -68,15 +68,6 @@
                </div>
               </div>
               <a class="btn secondary-btn" href="{{route('job.index')}}">Show all jobs</a>
-              {{-- <a class="btn btn-primary" href="/cvtemp1"> CV Template1</a>
-              <a class="btn btn-primary" href="/cvtemp2"> CV Template2</a>
-              <a class="btn btn-primary" href="/cvtemp3"> CV Template3</a>
-
-              <a class="btn btn-success" href="/cltemp1"> CL Template1</a>
-              <a class="btn btn-success" href="/cltemp2"> CL Template2</a>
-              <a class="btn btn-success" href="/cltemp3"> CL Template3</a>
-              <a class="btn btn-success" href="/cltemp4"> CL Template4</a> --}}
-
             </div>
           </div>
 

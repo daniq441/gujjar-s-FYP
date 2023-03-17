@@ -11,6 +11,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\savedJobController;
 use App\Http\Controllers\UserDetailController;
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\ExperienceController;
 use Illuminate\Support\Facades\Route;
 
 //public routes
@@ -113,17 +114,40 @@ Route::middleware('auth')->group(function () {
     // Education form page
     Route::get('/education-create/{image}/{color}/{bg_color}/{templatePath}', [EducationController::class, 'bgcreate']);
     Route::get('/education-create/{image}/{color}/{templatePath}', [EducationController::class, 'create']);
-    // Education detail
+    // Education store
     Route::post('/education-detail/{image}/{color}/{bg_color}/{templatePath}', [EducationController::class, 'bgstore']);
     Route::post('/education-detail/{image}/{color}/{templatePath}', [EducationController::class, 'store']);
     // Education description
     Route::get('/education-description/{image}/{color}/{bg_color}/{templatePath}', [EducationController::class, 'bgindex']);
     Route::get('/education-description/{image}/{color}/{templatePath}', [EducationController::class, 'index']);
-
     // Education Delete
     Route::get('/education-delete/{image}/{color}/{bg_color}/{templatePath}/{id}', [EducationController::class, 'bgdelete']);
     Route::get('/education-delete/{image}/{color}/{templatePath}/{id}', [EducationController::class, 'delete']);
+    // Education edit
+    Route::get('/education-edit/{image}/{color}/{bg_color}/{templatePath}/{id}', [EducationController::class, 'bgedit']);
+    Route::get('/education-edit/{image}/{color}/{templatePath}/{id}', [EducationController::class, 'edit']);
+    // Education update
+    Route::post('/education-update/{image}/{color}/{bg_color}/{templatePath}/{id}', [EducationController::class, 'bgupdate']);
+    Route::post('/education-update/{image}/{color}/{templatePath}/{id}', [EducationController::class, 'update']);
 
+    //Experience create
+    Route::get('/experience-create/{image}/{color}/{bg_color}/{templatePath}', [ExperienceController::class, 'bgcreate']);
+    Route::get('/experience-create/{image}/{color}/{templatePath}', [ExperienceController::class, 'create']);
+    //Experience store
+    Route::post('/experience-store/{image}/{color}/{bg_color}/{templatePath}', [ExperienceController::class, 'bgstore']);
+    Route::post('/experience-store/{image}/{color}/{templatePath}', [ExperienceController::class, 'store']);
+    //Experience description
+    Route::get('/experience-description/{image}/{color}/{bg_color}/{templatePath}', [ExperienceController::class, 'bgindex']);
+    Route::get('/experience-description/{image}/{color}/{templatePath}', [ExperienceController::class, 'index']);
+    //Experience Delete
+    Route::get('/experience-delete/{image}/{color}/{bg_color}/{templatePath}/{id}', [ExperienceController::class, 'bgdelete']);
+    Route::get('/experience-delete/{image}/{color}/{templatePath}/{id}', [ExperienceController::class, 'delete']);
+    //Experience edit
+    Route::get('/experience-edit/{image}/{color}/{bg_color}/{templatePath}/{id}', [ExperienceController::class, 'bgedit']);
+    Route::get('/experience-edit/{image}/{color}/{templatePath}/{id}', [ExperienceController::class, 'edit']);
+    //Experience update
+    Route::post('/experience-update/{image}/{color}/{bg_color}/{templatePath}/{id}', [ExperienceController::class, 'bgupdate']);
+    Route::post('/experience-update/{image}/{color}/{templatePath}/{id}', [ExperienceController::class, 'update']);
 
 
     // CV
