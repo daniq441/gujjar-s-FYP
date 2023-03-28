@@ -47,6 +47,12 @@ class ExperienceController extends Controller
      */
     public function store($image, $color, $templatePath, Request $request)
     {
+        $request->validate([
+            'STMONTH' => 'required', //in which space not acceptable
+            'STYEAR' => 'required', //in which space not acceptable
+            'ENDMONTH' => 'required', //in which space not acceptable
+            'ENDYEAR' => 'required' //in which space not acceptable
+        ]);
         // dd($request);
         auth()->user()->experiences()->create([
             'job_title' => request('JOB'),
@@ -54,13 +60,21 @@ class ExperienceController extends Controller
             'city' => request('CITY'),
             'country' => request('COUNT'),
             'description' => request('DESC'),
-            'start_date' => request('STDT'),
-            'end_date' => request('EDDT'),
+            'start_month' => request('STMONTH'),
+            'start_year' => request('STYEAR'),
+            'end_month' => request('ENDMONTH'),
+            'end_year' => request('ENDYEAR'),
         ]);
         return redirect('/experience-description' . '/' . $image . '/' . $color . '/' . $templatePath);
     }
     public function bgstore($image, $color, $bg_color, $templatePath, Request $request)
     {
+        $request->validate([
+            'STMONTH' => 'required', //in which space not acceptable
+            'STYEAR' => 'required', //in which space not acceptable
+            'ENDMONTH' => 'required', //in which space not acceptable
+            'ENDYEAR' => 'required' //in which space not acceptable
+        ]);
         // dd($request);
         auth()->user()->experiences()->create([
             'job_title' => request('JOB'),
@@ -68,8 +82,10 @@ class ExperienceController extends Controller
             'city' => request('CITY'),
             'country' => request('COUNT'),
             'description' => request('DESC'),
-            'start_date' => request('STDT'),
-            'end_date' => request('EDDT'),
+            'start_month' => request('STMONTH'),
+            'start_year' => request('STYEAR'),
+            'end_month' => request('ENDMONTH'),
+            'end_year' => request('ENDYEAR'),
         ]);
         return redirect('/experience-description' . '/' . $image . '/' . $color . '/' . $bg_color . '/' . $templatePath);
     }
@@ -113,27 +129,33 @@ class ExperienceController extends Controller
      */
     public function update($image, $color, $templatePath, $id, Request $request, Experience $experience)
     {
+        // dd($request);
         $exp_data = Experience::whereId($id)->first();
         $exp_data->job_title = $request->JOB;
         $exp_data->company_name = $request->COMP;
         $exp_data->city = $request->CITY;
         $exp_data->country = $request->COUNT;
         $exp_data->description = $request->DESC;
-        $exp_data->start_date = $request->STDT;
-        $exp_data->end_date = $request->EDDT;
+        $exp_data->start_month = $request->STMONTH;
+        $exp_data->start_year = $request->STYEAR;
+        $exp_data->end_month = $request->ENDMONTH;
+        $exp_data->end_year = $request->ENDYEAR;
         $exp_data->save();
         return redirect('/experience-description' . '/' . $image . '/' . $color . '/' . $templatePath);
     }
     public function bgupdate($image, $color, $bg_color, $templatePath, $id, Request $request, Experience $experience)
     {
+        // dd($request);
         $exp_data = Experience::whereId($id)->first();
         $exp_data->job_title = $request->JOB;
         $exp_data->company_name = $request->COMP;
         $exp_data->city = $request->CITY;
         $exp_data->country = $request->COUNT;
         $exp_data->description = $request->DESC;
-        $exp_data->start_date = $request->STDT;
-        $exp_data->end_date = $request->EDDT;
+        $exp_data->start_month = $request->STMONTH;
+        $exp_data->start_year = $request->STYEAR;
+        $exp_data->end_month = $request->ENDMONTH;
+        $exp_data->end_year = $request->ENDYEAR;
         $exp_data->save();
         return redirect('/experience-description' . '/' . $image . '/' . $color . '/' . $bg_color . '/' . $templatePath);
     }

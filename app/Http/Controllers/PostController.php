@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\UserDetail;
 use App\Models\Education;
 use App\Models\Experience;
+use App\Models\Skill;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -21,13 +22,16 @@ class PostController extends Controller
         // $experience = auth()->user()->experiences;
         // dd($education);
         $user_id = auth()->id();
-        $education = Education::where('user_id', $user_id)->get();
-        $experience = Experience::where('user_id', $user_id)->get();
-        // dd($education);
-        // dd($experience);
+        $educations = Education::where('user_id', $user_id)->get();
+        $experiences = Experience::where('user_id', $user_id)->get();
+        $skills = Skill::where('user_id', $user_id)->get();
+        // dd($educations);
+        // dd($experiences);
+        // dd($skills);
         // $post->delete()
-        $education->each->delete();
-        $experience->each->delete();
+        $educations->each->delete();
+        $experiences->each->delete();
+        $skills->each->delete();
         // Education::truncate();
         // Experience::truncate();
         $posts = Post::latest()->take(20)->with('company')->get();

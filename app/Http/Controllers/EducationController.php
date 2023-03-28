@@ -46,6 +46,9 @@ class EducationController extends Controller
      */
     public function store($image, $color, $templatePath, Request $request)
     {
+        $request->validate([
+            'DEGREE' => 'required',
+        ]);
         // Store data in education table after making relationship
         auth()->user()->education()->create([
             'school_name' => request('SCHO'),
@@ -59,6 +62,10 @@ class EducationController extends Controller
     }
     public function bgstore($image, $color, $bg_color, $templatePath, Request $request)
     {
+        $request->validate([
+            'DEGREE' => 'required',
+        ]);
+
         auth()->user()->education()->create([
             'school_name' => request('SCHO'),
             'school_location' => request('SCLO'),

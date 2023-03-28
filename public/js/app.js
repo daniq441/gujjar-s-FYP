@@ -56563,77 +56563,372 @@ module.exports = __webpack_require__(/*! D:\imp\job-lister-laravel-8\resources\s
 
 /******/ });
 
+/*!*************************************************************!*\
+  !***             Personal detail validation                  ***!
+  \*************************************************************/
+/*! no static exports found */
+function detailValidation()
+{
+    console.log('ok');
+    // First name check
+    var fName = document.getElementById("textFNAM").value;
+    var LName = document.getElementById("textLNAM").value;
+    var address = document.getElementById("textDCTL").value;
+    var city = document.getElementById("city").value;
+    var country = document.getElementById("country").value;
+    var postalCode = document.getElementById("zip").value;
+    var phone = document.getElementById('HPHN').value;
+    var phone_array = phone.split('');
+    var email = document.getElementById('EMAI').value;
+    if(fName == '')
+    {
+        document.getElementById('fname-error').innerHTML = "First name required";
+        return false;
+    }
+    // Last name validation
+    else if(LName == '')
+    {
+        document.getElementById('lname-error').innerHTML = "Last name required";
+        return false;
+    }
+    // Address validation
+    else if(address == '')
+    {
+        document.getElementById('address-error').innerHTML = "Your address required";
+        return false;
+    }
+    // City validation
+    else if(city == '')
+    {
+        document.getElementById('city-error').innerHTML = "Enter city name";
+        return false;
+    }
+    // Country validation
+    else if(country == '')
+    {
+        document.getElementById('country-error').innerHTML = "Enter country name";
+        return false;
+    }
+    // Postal code validation
+    else if(postalCode == '')
+    {
+        document.getElementById('zip-error').innerHTML = "Postal code required";
+        return false;
+    }
+    else if(phone == '')
+    {
+        document.getElementById('phone-error').innerHTML = "Phone number required";
+        return false;
+    }
+    else if(phone_array.length > 13 || phone_array.length < 13)
+    {
+        document.getElementById('phone-error').innerHTML = 'Phone lenght should be 13 characters';
+        return false;
+    }
+    else if(phone_array[0] != '+' || phone_array[1] != '9' || phone_array[2] != '2' || phone_array[3] != '3')
+    {
+        document.getElementById('phone-error').innerHTML = 'Incorect pattern';
+        return false;
+    }
+    // Email validation
+    else if(email == '')
+    {
+        document.getElementById('email-error').innerHTML = "Email required";
+        return false;
+    }
+    else if(!email.includes('@'))
+    {
+        document.getElementById('email-error').innerHTML = "Please inclue \'@\' in the email address";
+        return false;
+    }
+
+}
+// First name error remove
+function fName()
+{
+    var fName = document.getElementById('textFNAM').value;
+    if(fName != "")
+    {
+        document.getElementById('fname-error').innerHTML = "";
+    }
+}
+// Last name error remove
+function lName()
+{
+    var lName = document.getElementById('textLNAM').value;
+    if(lName != "")
+    {
+        document.getElementById('lname-error').innerHTML = "";
+    }
+}
+// Address error remove
+function address()
+{
+    var address = document.getElementById('textDCTL').value;
+    if(address != "")
+    {
+        document.getElementById('address-error').innerHTML = "";
+    }
+}
+// City error remove
+function cityInput()
+{
+    var city = document.getElementById('city').value;
+    if(city != "")
+    {
+        document.getElementById('city-error').innerHTML = "";
+    }
+}
+// Country error remove
+function countryInput()
+{
+    var country = document.getElementById('country').value;
+    if(country != "")
+    {
+        document.getElementById('country-error').innerHTML = "";
+    }
+}
+// Zipcode error remove
+function zipCode()
+{
+    var postalCode = document.getElementById('zip').value;
+    if(postalCode != "")
+    {
+        document.getElementById('zip-error').innerHTML = "";
+    }
+}
+// Phone error remove
+function phone()
+{
+    var phone = document.getElementById('HPHN').value;
+    var phone_array = phone.split('');
+    if(phone_array.length == 13)
+    {
+        if(phone_array[0] == '+' && phone_array[1] == '9' && phone_array[2] == '2' && phone_array[3] == '3')
+        {
+            document.getElementById('phone-error').innerHTML = '';
+        }
+    }
+}
+
+// Education validation
+function educationValidation()
+{
+
+    var school_name = document.getElementById('school').value;
+    console.log(school_name);
+    var school_location = document.getElementById('SCLO').value;
+    var degree = document.getElementById('degree').value;
+    var education = document.getElementById('STUY').value;
+    // School name validation
+    if(school_name == '')
+    {
+        console.log('ok');
+        document.getElementById('scName-error').innerHTML = 'Enter School name!';
+        return false;
+    }
+    else if(school_location == '')
+    {
+        document.getElementById('scLocation-error').innerHTML = 'Enter School Location!';
+        return false;
+    }
+    else if(degree == 'Not Selected')
+    {
+        document.getElementById('degree-error').innerHTML = 'Select education type!';
+        return false;
+    }
+    else if(education == '')
+    {
+        document.getElementById('education-error').innerHTML = 'Enter Education please!';
+        return false;
+    }
+}
+// School name error remove
+function scName()
+{
+    var school_name = document.getElementById('school').value;
+    if(school_name != '')
+    {
+        document.getElementById('scName-error').innerHTML = '';
+    }
+}
+// School Location error remove
+function scLocation()
+{
+    var school_name = document.getElementById('SCLO').value;
+    if(school_name != '')
+    {
+        document.getElementById('scLocation-error').innerHTML = '';
+    }
+}
+// Education type error remove
+function eduType()
+{
+    var degree = document.getElementById('degree').value;
+    if(degree != 'Not Selected')
+    {
+        document.getElementById('degree-error').innerHTML = '';
+    }
+}
+// Education error remove
+function eduType()
+{
+    var degree = document.getElementById('degree').value;
+    if(degree != 'Not Selected')
+    {
+        document.getElementById('degree-error').innerHTML = '';
+    }
+}
+function education()
+{
+    var education = document.getElementById('STUY').value;
+    if(education != '')
+    {
+        document.getElementById('education-error').innerHTML = '';
+    }
+}
+
+
 function checkCheckbox()
 {
+    console.log('ok');
     var checkBox = document.getElementById("currentJob");
-    var input = document.getElementById('toCal');
-    if(checkBox.checked == true)
+    var endMonth_select = document.getElementById('endyear');
+    var endYear_select = document.getElementById('endmonth');
+    if(checkBox.checked == true )
     {
-        input.readOnly = true;
-        input.value = "Current";
+        endMonth_select.hidden = true;
+        endYear_select.hidden = true;
+
+        // create a new input element
+        var input1 = document.createElement("input");
+
+        input1.setAttribute('type', 'hidden');
+        input1.value = "Current";
+        input1.name = "ENDYEAR";
+        input1.class = "form-control";
+        input1.id = "curr_endyear";
+
+        var input2 = document.createElement("input");
+        input2.setAttribute('type', 'hidden');
+        input2.value = "Current";
+        input2.name = "ENDMONTH";
+        input2.class = "form-control";
+        input2.id = "curr_endmonth";
+
+        var exp_form = document.getElementById('exp_form');
+        // add the input element to the body of the HTML document
+        exp_form.appendChild(input1);
+        exp_form.appendChild(input2);
     }
     else
     {
-        input.readOnly = false;
-        input.value = ""
+        endMonth_select.hidden = false;
+        endYear_select.hidden = false;
+        var input1_del = document.getElementById("curr_endyear");
+        var input2_del = document.getElementById("curr_endmonth");
+        input1_del.remove();
+        input2_del.remove();
     }
 }
-function startDateFormate()
+
+function skillValidation()
 {
-    // console.log("formate function call");
-    var date_data = document.getElementById("fromCal").value;
-    var newData =  '';
-    var count = 0;
-    if(date_data.length === 4)
+    var songName = document.getElementById('skillname').value;
+    var rating_data = document.getElementById('rating').value;
+    if(songName == "")
     {
-        date_data_array = date_data.split('');
-        for(var i = 0; i<date_data_array.length; i++)
-        {
-            if(date_data_array[i] === '-')
-            {
-                count = count + 1;
-            }
-        }
-        if(count === 1)
-        {
-            for(var i = 0; i<date_data_array.length-1; i++)
-            {
-                newData = newData + date_data_array[i];
-            }
-            document.getElementById("fromCal").value = newData;
-        }
-        else
-        {
-            document.getElementById("fromCal").value = date_data + "-";
-        }
+        document.getElementById('name-error').innerHTML = "Enter skill name";
+        return false;
     }
+    else
+    {
+        document.getElementById('name-error').innerHTML = "";
+    }
+    if(rating_data == "")
+    {
+        document.getElementById('rating-error').innerHTML = "Select any option";
+        return false;
+    }
+    else
+    {
+        document.getElementById('rating-error').innerHTML = "";
+    }
+
 }
-function endDateFormate()
+function skName()
 {
-    var date_data = document.getElementById("toCal").value;
-    var newData =  '';
-    var count = 0;
-    if(date_data.length === 4)
+    var songName = document.getElementById('skillname').value;
+    if(songName != "")
     {
-        date_data_array = date_data.split('');
-        for(var i = 0; i<date_data_array.length; i++)
-        {
-            if(date_data_array[i] === '-')
-            {
-                count = count + 1;
-            }
-        }
-        if(count === 1)
-        {
-            for(var i = 0; i<date_data_array.length-1; i++)
-            {
-                newData = newData + date_data_array[i];
-            }
-            document.getElementById("toCal").value = newData;
-        }
-        else
-        {
-            document.getElementById("toCal").value = date_data + "-";
-        }
+        document.getElementById('name-error').innerHTML = "";
     }
 }
+function skRating()
+{
+    console.log('ok');
+    var rating_data = document.getElementById('rating').value;
+    if(rating_data != "")
+    {
+        document.getElementById('rating-error').innerHTML = "";
+    }
+}
+// function startDateFormate()
+// {
+//     // console.log("formate function call");
+//     var date_data = document.getElementById("fromCal").value;
+//     var newData =  '';
+//     var count = 0;
+//     if(date_data.length === 4)
+//     {
+//         date_data_array = date_data.split('');
+//         for(var i = 0; i<date_data_array.length; i++)
+//         {
+//             if(date_data_array[i] === '-')
+//             {
+//                 count = count + 1;
+//             }
+//         }
+//         if(count === 1)
+//         {
+//             for(var i = 0; i<date_data_array.length-1; i++)
+//             {
+//                 newData = newData + date_data_array[i];
+//             }
+//             document.getElementById("fromCal").value = newData;
+//         }
+//         else
+//         {
+//             document.getElementById("fromCal").value = date_data + "-";
+//         }
+//     }
+// }
+// function endDateFormate()
+// {
+//     var date_data = document.getElementById("toCal").value;
+//     var newData =  '';
+//     var count = 0;
+//     if(date_data.length === 4)
+//     {
+//         date_data_array = date_data.split('');
+//         for(var i = 0; i<date_data_array.length; i++)
+//         {
+//             if(date_data_array[i] === '-')
+//             {
+//                 count = count + 1;
+//             }
+//         }
+//         if(count === 1)
+//         {
+//             for(var i = 0; i<date_data_array.length-1; i++)
+//             {
+//                 newData = newData + date_data_array[i];
+//             }
+//             document.getElementById("toCal").value = newData;
+//         }
+//         else
+//         {
+//             document.getElementById("toCal").value = date_data + "-";
+//         }
+//     }
+// }

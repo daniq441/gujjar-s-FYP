@@ -12,6 +12,7 @@ use App\Http\Controllers\savedJobController;
 use App\Http\Controllers\UserDetailController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\SkillController;
 use Illuminate\Support\Facades\Route;
 
 //public routes
@@ -148,6 +149,25 @@ Route::middleware('auth')->group(function () {
     //Experience update
     Route::post('/experience-update/{image}/{color}/{bg_color}/{templatePath}/{id}', [ExperienceController::class, 'bgupdate']);
     Route::post('/experience-update/{image}/{color}/{templatePath}/{id}', [ExperienceController::class, 'update']);
+
+    //Skill create
+    Route::get('/skill-create/{image}/{color}/{bg_color}/{templatePath}', [SkillController::class, 'bgcreate']);
+    Route::get('/skill-create/{image}/{color}/{templatePath}', [SkillController::class, 'create']);
+    //Skill store
+    Route::post('/skill-store/{image}/{color}/{bg_color}/{templatePath}', [SkillController::class, 'bgstore']);
+    Route::post('/skill-store/{image}/{color}/{templatePath}', [SkillController::class, 'store']);
+    //Skill description
+    Route::get('/skill-description/{image}/{color}/{bg_color}/{templatePath}', [SkillController::class, 'bgindex']);
+    Route::get('/skill-description/{image}/{color}/{templatePath}', [SkillController::class, 'index']);
+    //Skill Delete
+    Route::get('/skill-delete/{image}/{color}/{bg_color}/{templatePath}/{id}', [SkillController::class, 'bgdelete']);
+    Route::get('/skill-delete/{image}/{color}/{templatePath}/{id}', [SkillController::class, 'delete']);
+    //Skill edit
+    Route::get('/skill-edit/{image}/{color}/{bg_color}/{templatePath}/{id}', [SkillController::class, 'bgedit']);
+    Route::get('/skill-edit/{image}/{color}/{templatePath}/{id}', [SkillController::class, 'edit']);
+    //Skill update
+    Route::post('/skill-update/{image}/{color}/{bg_color}/{templatePath}/{id}', [SkillController::class, 'bgupdate']);
+    Route::post('/skill-update/{image}/{color}/{templatePath}/{id}', [SkillController::class, 'update']);
 
 
     // CV

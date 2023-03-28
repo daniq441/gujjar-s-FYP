@@ -6,9 +6,9 @@
             Edit your education
         </div>
         @if(@isset($bg_color))
-        <form action="/education-update/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}/{{ $edu_data->id }}" method="POST">
+        <form action="/education-update/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}/{{ $edu_data->id }}" method="POST" onsubmit="return educationValidation()">
         @else
-        <form action="/education-update/{{ $image}}/{{$color}}/{{ $templatePath }}/{{ $edu_data->id }}" method="POST">
+        <form action="/education-update/{{ $image}}/{{$color}}/{{ $templatePath }}/{{ $edu_data->id }}" method="POST" onsubmit="return educationValidation()">
         @endif
             @csrf
             <div class="">
@@ -18,7 +18,8 @@
                             <div class="form-group">
                                 <label for="school" class="control-label">School Name</label>
                                 <div role="combobox" class="autosuggest-container">
-                                    <input type="text" class="form-control autosuggest" placeholder="(i.e). University Of Lahore" name="SCHO" id="school" maxlength="50" required spellcheck="true" value="{{ $edu_data->school_name }}">
+                                    <input type="text" class="form-control autosuggest" placeholder="(i.e). University Of Lahore" name="SCHO" id="school" maxlength="50" spellcheck="true" value="{{ $edu_data->school_name }}" oninput="scName()">
+                                    <div id="scName-error" class="text-danger"></div>
                                 </div>
                             </div>
                         </div>
@@ -26,7 +27,8 @@
                             <div class="form-group">
                                 <label for="SCLO" class="control-label">School Location</label>
                                 <div role="combobox" class="autosuggest-container">
-                                    <input type="text" class="form-control autosuggest" placeholder="(i.e). Lahore city, Pakistan" name="SCLO" id="SCLO" maxlength="50" autosuggesttype="googleplaces" spellcheck="true" required value="{{ $edu_data->school_location }}">
+                                    <input type="text" class="form-control autosuggest" placeholder="(i.e). Lahore city, Pakistan" name="SCLO" id="SCLO" maxlength="50" autosuggesttype="googleplaces" spellcheck="true" value="{{ $edu_data->school_location }}" oninput="scLocation()">
+                                    <div id="scLocation-error" class="text-danger"></div>
                                 </div>
                             </div>
                         </div>
@@ -55,13 +57,14 @@
                                     <option value="No Degree">No Degree</option>
                                 </select> --}}
                                 <label class="control-label">Education type</label>
-                                <select name="DEGREE" class="form-select">
+                                <select name="DEGREE" class="form-select" id="degree" onclick="eduType()">
                                     <option selected value="{{ $edu_data->degree }}">{{ $edu_data->degree }}</option>
                                     <option value="Degree">Degree</option>
                                     <option value="Diploma">Diploma</option>
                                     <option value="Certification">Certification</option>
                                     <option value="No Degree">No Degree</option>
                                 </select>
+                                <div id="degree-error" class="text-danger"></div>
                             </div>
                         </div>
                     </div>
@@ -70,7 +73,8 @@
                             <div class="form-group">
                                 <label for="STUY" class="control-label">Education</label>
                                 <div role="combobox" class="autosuggest-container">
-                                    <input type="text" class="form-control autosuggest" placeholder="(i.e). Bachelor of science in Computer Science" name="STUY" id="STUY" maxlength="50" autosuggesttype="fieldofstudy" spellcheck="true" required value="{{ $edu_data->field_of_study }}">
+                                    <input type="text" class="form-control autosuggest" placeholder="(i.e). Bachelor of science in Computer Science" name="STUY" id="STUY" maxlength="50" autosuggesttype="fieldofstudy" spellcheck="true" value="{{ $edu_data->field_of_study }}" oninput="education()">
+                                    <div id="education-error" class="text-danger"></div>
                                 </div>
                             </div>
                         </div>

@@ -21,8 +21,10 @@ class CreateExperiencesTable extends Migration
             $table->string("city");
             $table->string("country");
             $table->string("description");
-            $table->string("start_date");
-            $table->string("end_date");
+            $table->string("start_month");
+            $table->string("start_year");
+            $table->string("end_month");
+            $table->string("end_year");
             $table->timestamps();
         });
     }
