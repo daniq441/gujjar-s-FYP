@@ -16,9 +16,9 @@
             Tell us about your experience
         </div>
         @if(@isset($bg_color))
-        <form id="exp_form" action="/experience-store/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}" method="POST">
+        <form id="exp_form" action="/experience-store/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}" method="POST" onsubmit="return experienceValidation()">
         @else
-        <form id="exp_form" action="/experience-store/{{ $image}}/{{$color}}/{{ $templatePath }}" method="POST">
+        <form id="exp_form" action="/experience-store/{{ $image}}/{{$color}}/{{ $templatePath }}" method="POST" onsubmit="return experienceValidation()">
         @endif
             @csrf
             <div class="experience-section">
@@ -26,40 +26,45 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="position" class="control-label">Job Title</label>
-                            <input type="text" name="JOB" class="form-control" placeholder="(i.e). Software Engineer" id="position" maxlength="50" spellcheck="true" required value="">
+                            <input type="text" name="JOB" class="form-control" placeholder="(i.e). Software Engineer" id="position" maxlength="50" spellcheck="true" value="" oninput="jobTitle()">
+                            <div id="title-error" class="text-danger"></div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label" for="company">Company Name</label>
-                            <input type="text" name="COMP" placeholder="(i.e). Macro Mobile Solutions" maxlength="100" class="form-control" id="company" required value="">
+                            <input type="text" name="COMP" placeholder="(i.e). Macro Mobile Solutions" maxlength="100" class="form-control" id="company" value="" oninput="companyName()">
+                            <div id="company-name-error" class="text-danger"></div>
                         </div>
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-city col-sm-6">
-                        <div class="form-group ">
+                        <div class="form-group">
                             <label class="control-label " for="jobcity">City</label>
-                            <input type="text" name="CITY" placeholder="(i.e). Lahore" maxlength="100" class="form-control" id="jobcity" autocomplete="address-level2" required value="">
+                            <input type="text" name="CITY" placeholder="(i.e). Lahore" maxlength="100" class="form-control" id="jobcity" autocomplete="address-level2" value="" oninput="companyCity()">
+                            <div id="city-name-error" class="text-danger"></div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label" for="jobcountry">Country</label>
-                            <input type="text" name="COUNT" placeholder="(i.e). Pakistan" maxlength="50" class="form-control" id="jobcountry" required value="">
+                            <input type="text" name="COUNT" placeholder="(i.e). Pakistan" maxlength="50" class="form-control" id="jobcountry" value="" oninput="companyCountry()">
+                            <div id="country-name-error" class="text-danger"></div>
                         </div>
                     </div>
                 </div>
                 <label class="control-label" for="jobdescription">Description</label><br/>
                 <div class="input-group">
-                    <textarea class="form-control mb-3" name="DESC" aria-label="With textarea" id="jobdescription" rows="5"></textarea>
+                    <textarea class="form-control mb-3" name="DESC" aria-label="With textarea" id="jobdescription" rows="5" oninput="jobDescription()"></textarea>
                 </div>
+                <div id="description-error" class="text-danger control-label"></div>
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                        <label class="control-label" for="fromCal">Start Date</label>
+                            <label class="control-label" for="fromCal">Start Date</label>
                             {{-- <input type="text" name="STMONTH" placeholder="Month" maxlength="7" class="form-control data_formate" id="fromCal" required value="" oninput="startDateFormate()"> --}}
-                            <select name="STMONTH" class="form-select">
+                            <select name="STMONTH" id="start-month" class="form-select" onchange="startMonth()">
                                 <option disabled selected hidden>Month</option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
@@ -74,10 +79,11 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
+                            <div id="start-month-error" class="text-danger control-label"></div>
                         </div>
                         <div class="form-group">
                             {{-- <input type="text" name="STYEAR" placeholder="Year" maxlength="7" class="form-control data_formate" id="toCal" value="" oninput="endDateFormate()"> --}}
-                            <select name="STYEAR" class="form-select">
+                            <select name="STYEAR" id="start-year" class="form-select" onchange="startYear()">
                                 <option disabled selected hidden>Year</option>
                                 <option value="2023">2023</option>
                                 <option value="2022">2022</option>
@@ -180,6 +186,7 @@
                                 <option value="1924">1924</option>
                                 <option value="1923">1923</option>
                             </select>
+                            <div id="start-year-error" class="text-danger control-label"></div>
                         </div>
                     </div>
 
@@ -187,7 +194,7 @@
                         <div class="form-group">
                             <label class="control-label" for="fromCal">End Date</label>
                             {{-- <input type="text" name="STMONTH" placeholder="Month" maxlength="7" class="form-control data_formate" id="fromCal" required value="" oninput="startDateFormate()"> --}}
-                            <select name="ENDMONTH" class="form-select" id="endmonth">
+                            <select name="ENDMONTH" class="form-select" id="endmonth" onchange="endMonth()">
                                 <option disabled selected hidden>Month</option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
@@ -202,10 +209,11 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
+                            <div id="end-month-error" class="text-danger control-label"></div>
                         </div>
                         <div class="form-group">
                             {{-- <input type="text" name="STYEAR" placeholder="Year" maxlength="7" class="form-control data_formate" id="toCal" value="" oninput="endDateFormate()"> --}}
-                            <select name="ENDYEAR" class="form-select" id="endyear">
+                            <select name="ENDYEAR" class="form-select" id="endyear" onchange="endYear()">
                                 <option disabled selected hidden>Year</option>
                                 <option value="2023">2023</option>
                                 <option value="2022">2022</option>
@@ -308,6 +316,7 @@
                                 <option value="1924">1924</option>
                                 <option value="1923">1923</option>
                             </select>
+                            <div id="end-year-error" class="text-danger control-label"></div>
                         </div>
                         <div class="custom-control custom-checkbox checkbox-sm">
                             <input type="checkbox" class="custom-control-input" id="currentJob" value="" onclick="checkCheckbox()">
@@ -336,7 +345,7 @@
                 </div> --}}
             </div>
             <div class="d-flex mb-3 justify-content-end">
-                <input type="submit" class="btn primary-btn" value="Next">
+                <input type="submit" class="btn primary-btn" value="Next" onclick="experienceValidation()">
             </div>
         </form>
     </section>

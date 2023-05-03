@@ -59,7 +59,7 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\JobApplication');
     }
-    // for build relationship for many educations to user
+    // To build relationship for many educations to user
     public function education()
     {
         return $this->hasMany(Education::class);
@@ -69,8 +69,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Experience::class);
     }
+
     public function skills()
     {
         return $this->hasMany(Skill::class);
+    }
+    public function detail()
+    {
+        return $this->hasOne(UserDetail::class);
     }
 }

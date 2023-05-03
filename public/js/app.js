@@ -56567,10 +56567,10 @@ module.exports = __webpack_require__(/*! D:\imp\job-lister-laravel-8\resources\s
   !***             Personal detail validation                  ***!
   \*************************************************************/
 /*! no static exports found */
+// Persinal detail validation
 function detailValidation()
 {
-    console.log('ok');
-    // First name check
+    // console.log('ok');
     var fName = document.getElementById("textFNAM").value;
     var LName = document.getElementById("textLNAM").value;
     var address = document.getElementById("textDCTL").value;
@@ -56580,6 +56580,7 @@ function detailValidation()
     var phone = document.getElementById('HPHN').value;
     var phone_array = phone.split('');
     var email = document.getElementById('EMAI').value;
+    // First name validation
     if(fName == '')
     {
         document.getElementById('fname-error').innerHTML = "First name required";
@@ -56615,6 +56616,7 @@ function detailValidation()
         document.getElementById('zip-error').innerHTML = "Postal code required";
         return false;
     }
+    // Phone number validation
     else if(phone == '')
     {
         document.getElementById('phone-error').innerHTML = "Phone number required";
@@ -56727,16 +56729,19 @@ function educationValidation()
         document.getElementById('scName-error').innerHTML = 'Enter School name!';
         return false;
     }
+    // School location validation
     else if(school_location == '')
     {
         document.getElementById('scLocation-error').innerHTML = 'Enter School Location!';
         return false;
     }
+    // Education type (degree) validation
     else if(degree == 'Not Selected')
     {
         document.getElementById('degree-error').innerHTML = 'Select education type!';
         return false;
     }
+    // Education validation
     else if(education == '')
     {
         document.getElementById('education-error').innerHTML = 'Enter Education please!';
@@ -56770,15 +56775,15 @@ function eduType()
         document.getElementById('degree-error').innerHTML = '';
     }
 }
+// function eduType()
+// {
+//     var degree = document.getElementById('degree').value;
+//     if(degree != 'Not Selected')
+//     {
+//         document.getElementById('degree-error').innerHTML = '';
+//     }
+//  }
 // Education error remove
-function eduType()
-{
-    var degree = document.getElementById('degree').value;
-    if(degree != 'Not Selected')
-    {
-        document.getElementById('degree-error').innerHTML = '';
-    }
-}
 function education()
 {
     var education = document.getElementById('STUY').value;
@@ -56788,10 +56793,213 @@ function education()
     }
 }
 
+//Experience vaidation
+function experienceValidation()
+{
+    var job_title = document.getElementById('position').value;
+    var company_name = document.getElementById('company').value;
+    var city = document.getElementById('jobcity').value;
+    var country = document.getElementById('jobcountry').value;
+    var description = document.getElementById('jobdescription').value;
+    var start_month = document.getElementById('start-month').value;
+    var start_year = document.getElementById('start-year').value;
+    var end_month = document.getElementById('endmonth');
+    var end_year = document.getElementById('endyear');
 
-function checkCheckbox()
+    // job title validation
+    if(job_title == '')
+    {
+        document.getElementById('title-error').innerHTML= 'Enter job title';
+        return false;
+    }
+    // Company name validation
+    else if(company_name == '')
+    {
+        document.getElementById('company-name-error').innerHTML = 'Enter company name';
+        return false;
+    }
+    // city validation
+    else if(city == '')
+    {
+        document.getElementById('city-name-error').innerHTML = 'Enter city name where company located';
+        return false;
+    }
+    // Country validation
+    else if(country == '')
+    {
+        document.getElementById('country-name-error').innerHTML = 'Enter country name where company located';
+        return false;
+    }
+    // Description validarion
+    else if(description == '')
+    {
+        document.getElementById('description-error').innerHTML = 'Enter description of your job';
+        return false;
+    }
+    else if(description.length<20){
+        document.getElementById('description-error').innerHTML="Length should be more than 20 characters";
+        return false;
+    }
+    // start month validation
+    else if(start_month == 'Month')
+    {
+        document.getElementById('start-month-error').innerHTML="Select month when job start";
+        return false;
+    }
+    // start year validation
+    else if(start_year == 'Year')
+    {
+        document.getElementById('start-year-error').innerHTML="Select year when job start";
+        return false;
+    }
+    // end month validation
+    else if((end_month.value == 'Month' || end_month.value == 'Current') && end_month.hidden == false)
+    {
+        document.getElementById('end-month-error').innerHTML="Select month when job end";
+        return false;
+    }
+    // end year validation
+    else if((end_year.value == 'Year' || end_year.value == 'Current') && end_year.hidden == false)
+    {
+        document.getElementById('end-year-error').innerHTML="Select year when job end";
+        return false;
+    }
+}
+// Job title error remove
+function jobTitle()
+{
+    var job_title = document.getElementById('position').value;
+    if(job_title != '')
+    {
+        document.getElementById('title-error').innerHTML= '';
+    }
+}
+//  Company name error remove
+function companyName()
+{
+    var company_name = document.getElementById('company').value;
+    if(company_name != '')
+    {
+        document.getElementById('company-name-error').innerHTML = '';
+    }
+}
+//  Company city error remove
+function companyCity()
+{
+    var city = document.getElementById('jobcity').value;
+    if(city != '')
+    {
+        document.getElementById('city-name-error').innerHTML = '';
+    }
+}
+//  Company country error remove
+function companyCountry()
+{
+    var country = document.getElementById('jobcountry').value;
+    if(country != '')
+    {
+        document.getElementById('country-name-error').innerHTML = '';
+    }
+}
+//  Job description error remove
+function jobDescription()
+{
+    var description = document.getElementById('jobdescription').value;
+    if(description != '' && description.length <20)
+    {
+        document.getElementById('description-error').innerHTML = 'Length should be more than 20 characters';
+    }
+    else if(description != '' && description.length >=20)
+    {
+        document.getElementById('description-error').innerHTML = '';
+    }
+}
+// Job start month error remove
+function startMonth()
+{
+    var start_month = document.getElementById('start-month').value;
+    if(start_month != '')
+    {
+        document.getElementById('start-month-error').innerHTML="";
+    }
+}
+// Job start year error remove
+function startYear()
+{
+    var start_year = document.getElementById('start-year').value;
+    if(start_year != '')
+    {
+        document.getElementById('start-year-error').innerHTML="";
+    }
+}
+// Job start month error remove
+function endMonth()
+{
+    var end_month = document.getElementById('endmonth').value;
+    if(end_month != '')
+    {
+        document.getElementById('end-month-error').innerHTML="";
+    }
+}
+// Job end year error remove
+function endYear()
+{
+    var end_year = document.getElementById('endyear').value;
+    if(end_year != '')
+    {
+        document.getElementById('end-year-error').innerHTML="";
+    }
+}
+
+// Skills validation
+function skillValidation()
+{
+    var songName = document.getElementById('skillname').value;
+    var rating_data = document.getElementById('rating').value;
+    // Skill name validation
+    if(songName == "")
+    {
+        document.getElementById('name-error').innerHTML = "Enter skill name";
+        return false;
+    }
+    else
+    {
+        document.getElementById('name-error').innerHTML = "";
+    }
+    // Skill rating validation
+    if(rating_data == "")
+    {
+        document.getElementById('rating-error').innerHTML = "Select any option";
+        return false;
+    }
+    else
+    {
+        document.getElementById('rating-error').innerHTML = "";
+    }
+
+}
+// Skill name error remove
+function skName()
+{
+    var songName = document.getElementById('skillname').value;
+    if(songName != "")
+    {
+        document.getElementById('name-error').innerHTML = "";
+    }
+}
+// Skill rating error remove
+function skRating()
 {
     console.log('ok');
+    var rating_data = document.getElementById('rating').value;
+    if(rating_data != "")
+    {
+        document.getElementById('rating-error').innerHTML = "";
+    }
+}
+// Experience checkbox handling
+function checkCheckbox()
+{
     var checkBox = document.getElementById("currentJob");
     var endMonth_select = document.getElementById('endyear');
     var endYear_select = document.getElementById('endmonth');
@@ -56830,49 +57038,10 @@ function checkCheckbox()
         input1_del.remove();
         input2_del.remove();
     }
+    document.getElementById('end-year-error').innerHTML="";
+    document.getElementById('end-month-error').innerHTML="";
 }
 
-function skillValidation()
-{
-    var songName = document.getElementById('skillname').value;
-    var rating_data = document.getElementById('rating').value;
-    if(songName == "")
-    {
-        document.getElementById('name-error').innerHTML = "Enter skill name";
-        return false;
-    }
-    else
-    {
-        document.getElementById('name-error').innerHTML = "";
-    }
-    if(rating_data == "")
-    {
-        document.getElementById('rating-error').innerHTML = "Select any option";
-        return false;
-    }
-    else
-    {
-        document.getElementById('rating-error').innerHTML = "";
-    }
-
-}
-function skName()
-{
-    var songName = document.getElementById('skillname').value;
-    if(songName != "")
-    {
-        document.getElementById('name-error').innerHTML = "";
-    }
-}
-function skRating()
-{
-    console.log('ok');
-    var rating_data = document.getElementById('rating').value;
-    if(rating_data != "")
-    {
-        document.getElementById('rating-error').innerHTML = "";
-    }
-}
 // function startDateFormate()
 // {
 //     // console.log("formate function call");

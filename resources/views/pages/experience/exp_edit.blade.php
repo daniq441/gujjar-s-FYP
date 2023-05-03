@@ -6,9 +6,9 @@
             Update your experience
         </div>
         @if(@isset($bg_color))
-        <form id="exp_form" action="/experience-update/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}/{{ $exp_data->id }}" method="POST">
+        <form id="exp_form" action="/experience-update/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}/{{ $exp_data->id }}" method="POST" onsubmit="return experienceValidation()">
         @else
-        <form id="exp_form" action="/experience-update/{{ $image}}/{{$color}}/{{ $templatePath }}/{{ $exp_data->id }}" method="POST">
+        <form id="exp_form" action="/experience-update/{{ $image}}/{{$color}}/{{ $templatePath }}/{{ $exp_data->id }}" method="POST" onsubmit="return experienceValidation()">
         @endif
             @csrf
             <div class="experience-section">
@@ -16,15 +16,15 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="position" class="control-label">Job Title</label>
-                            {{-- <div role="combobox" class="autosuggest-container"> --}}
-                                <input type="text" name="JOB" class="form-control" placeholder="(i.e). Software Engineer" id="position" maxlength="50" spellcheck="true" required value="{{ $exp_data->job_title }}">
-                            {{-- </div> --}}
+                            <input type="text" name="JOB" class="form-control" placeholder="(i.e). Software Engineer" id="position" maxlength="50" spellcheck="true" value="{{ $exp_data->job_title }}" oninput="jobTitle()">
+                            <div id="title-error" class="text-danger"></div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label" for="company">Company Name</label>
-                            <input type="text" name="COMP" placeholder="(i.e). Macro Mobile Solutions" maxlength="100" class="form-control" id="company" required value="{{ $exp_data->company_name }}">
+                            <input type="text" name="COMP" placeholder="(i.e). Macro Mobile Solutions" maxlength="100" class="form-control" id="company" value="{{ $exp_data->company_name }}" oninput="companyName()">
+                            <div id="company-name-error" class="text-danger"></div>
                         </div>
                     </div>
                 </div>
@@ -32,20 +32,24 @@
                     <div class="col-city col-sm-6">
                         <div class="form-group ">
                             <label class="control-label " for="jobcity">City</label>
-                            <input type="text" name="CITY" placeholder="(i.e). Lahore" maxlength="100" class="form-control" id="jobcity" autocomplete="address-level2" required value="{{ $exp_data->city }}">
+                            <input type="text" name="CITY" placeholder="(i.e). Lahore" maxlength="100" class="form-control" id="jobcity" autocomplete="address-level2" value="{{ $exp_data->city }}" oninput="companyCity()">
+                            <div id="city-name-error" class="text-danger"></div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label class="control-label" for="jobcountry">Country</label>
-                            <input type="text" name="COUNT" placeholder="(i.e). Pakistan" maxlength="50" class="form-control" id="jobcountry" required value="{{ $exp_data->country }}">
+                            <input type="text" name="COUNT" placeholder="(i.e). Pakistan" maxlength="50" class="form-control" id="jobcountry" value="{{ $exp_data->country }}" oninput="companyCountry()">
+                            <div id="country-name-error" class="text-danger"></div>
                         </div>
                     </div>
                 </div>
                 <label class="control-label" for="jobdescription">Description</label><br/>
                 <div class="input-group">
-                    <textarea class="form-control mb-3" name="DESC" aria-label="With textarea" id="jobdescription" rows="5">{{ $exp_data->description }}</textarea>
+                    <textarea class="form-control mb-3" name="DESC" aria-label="With textarea" id="jobdescription" rows="5" oninput="jobDescription()">{{ $exp_data->description }}</textarea>
                 </div>
+                <div id="description-error" class="text-danger control-label"></div>
+
                 {{-- <div class="row w-50">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -77,7 +81,7 @@
                         <div class="form-group">
                         <label class="control-label" for="fromCal">Start Date</label>
                             {{-- <input type="text" name="STMONTH" placeholder="Month" maxlength="7" class="form-control data_formate" id="fromCal" required value="" oninput="startDateFormate()"> --}}
-                            <select name="STMONTH" class="form-select">
+                            <select name="STMONTH" id="start-month" class="form-select" onchange="startMonth()">
                                 <option value="{{ $exp_data->start_month }}" selected>{{ $exp_data->start_month }}</option>
                                 <option value="01">01</option>
                                 <option value="02">02</option>
@@ -92,10 +96,11 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
+                            <div id="start-month-error" class="text-danger control-label"></div>
                         </div>
                         <div class="form-group">
                             {{-- <input type="text" name="STYEAR" placeholder="Year" maxlength="7" class="form-control data_formate" id="toCal" value="" oninput="endDateFormate()"> --}}
-                            <select name="STYEAR" class="form-select">
+                            <select name="STYEAR" id="start-year" class="form-select" onchange="startYear()">
                                 <option value="{{ $exp_data->start_year }}" selected>{{ $exp_data->start_year }}</option>
                                 <option value="2023">2023</option>
                                 <option value="2022">2022</option>
@@ -198,6 +203,7 @@
                                 <option value="1924">1924</option>
                                 <option value="1923">1923</option>
                             </select>
+                            <div id="start-year-error" class="text-danger control-label"></div>
                         </div>
                     </div>
 
@@ -206,9 +212,9 @@
                             <label class="control-label" for="fromCal">End Date</label>
                             {{-- <input type="text" name="STMONTH" placeholder="Month" maxlength="7" class="form-control data_formate" id="fromCal" required value="" oninput="startDateFormate()"> --}}
                             @if($exp_data->end_year == 'Current')
-                            <select hidden name="ENDMONTH" class="form-select" id="endmonth">
+                            <select hidden name="ENDMONTH" class="form-select" id="endmonth" onchange="endMonth()">
                             @else
-                            <select name="ENDMONTH" class="form-select" id="endmonth">
+                            <select name="ENDMONTH" class="form-select" id="endmonth" onchange="endMonth()">
                             @endif
                                 <option value="{{ $exp_data->end_month }}" selected>{{ $exp_data->end_month }}</option>
                                 <option value="01">01</option>
@@ -224,13 +230,14 @@
                                 <option value="11">11</option>
                                 <option value="12">12</option>
                             </select>
+                            <div id="end-month-error" class="text-danger control-label"></div>
                         </div>
                         <div class="form-group">
                             {{-- <input type="text" name="STYEAR" placeholder="Year" maxlength="7" class="form-control data_formate" id="toCal" value="" oninput="endDateFormate()"> --}}
                             @if($exp_data->end_year == 'Current')
-                            <select hidden name="ENDYEAR" class="form-select" id="endyear">
+                            <select hidden name="ENDYEAR" class="form-select" id="endyear" onchange="endYear()">
                             @else
-                            <select name="ENDYEAR" class="form-select" id="endyear">
+                            <select name="ENDYEAR" class="form-select" id="endyear" onchange="endYear()">
                             @endif
                                 <option value="{{ $exp_data->end_year }}" selected>{{ $exp_data->end_year }}</option>
                                 <option value="2023">2023</option>
@@ -334,6 +341,7 @@
                                 <option value="1924">1924</option>
                                 <option value="1923">1923</option>
                             </select>
+                            <div id="end-year-error" class="text-danger control-label"></div>
                         </div>
                         <div class="custom-control custom-checkbox checkbox-sm">
                             @if($exp_data->end_year == 'Current')
