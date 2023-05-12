@@ -56567,6 +56567,8 @@ module.exports = __webpack_require__(/*! D:\imp\job-lister-laravel-8\resources\s
   !***             Personal detail validation                  ***!
   \*************************************************************/
 /*! no static exports found */
+
+
 // Persinal detail validation
 function detailValidation()
 {
@@ -56580,6 +56582,15 @@ function detailValidation()
     var phone = document.getElementById('HPHN').value;
     var phone_array = phone.split('');
     var email = document.getElementById('EMAI').value;
+    var summary = document.getElementById('summar').value;
+    var profile = document.getElementById('profile').value;
+    console.log(profile);
+    var ext_profile = profile.substring(profile.lastIndexOf('.'));
+    console.log(ext_profile);
+    var allowedFiles = [".png", ".jpeg", ".jpg", ".gif", ".tiff"];
+    var pic_check = false;
+
+
     // First name validation
     if(fName == '')
     {
@@ -56640,10 +56651,40 @@ function detailValidation()
     }
     else if(!email.includes('@'))
     {
-        document.getElementById('email-error').innerHTML = "Please inclue \'@\' in the email address";
+        document.getElementById('email-error').innerHTML = "Please include \'@\' in the email address";
         return false;
     }
-
+    else if(email.match(/@/g || []).length > 1)
+    {
+        document.getElementById('email-error').innerHTML = "Please include single \'@\' in the email address";
+        return false;
+    }
+    // Summary validation
+    else if(summary == '')
+    {
+        document.getElementById('summary-error').innerHTML = 'Enter summary';
+        return false;
+    }
+    else if(summary.length<20){
+        document.getElementById('summary-error').innerHTML="Length should be more than 20 characters";
+        return false;
+    }
+    // Profile validation
+    if(ext_profile.length > 0 )
+    {
+        for(var i = 0; i<allowedFiles.length; i++)
+        {
+            if(ext_profile.toLowerCase() == allowedFiles[i])
+            {
+                pic_check = true;
+            }
+        }
+        if(pic_check == false)
+        {
+            document.getElementById('profile-error').innerHTML = 'Please upload a valid image';
+            return false;
+        }
+    }
 }
 // First name error remove
 function fName()
@@ -56711,6 +56752,37 @@ function phone()
             document.getElementById('phone-error').innerHTML = '';
         }
     }
+}
+// Email error remove
+function email()
+{
+    var email = document.getElementById('EMAI').value;
+    if(email != "")
+    {
+        document.getElementById('email-error').innerHTML = "";
+    }
+}
+// Summary error remove
+function summary()
+{
+    var summary = document.getElementById('summar').value;
+    if(summary!= "" && summary.length < 20)
+    {
+        document.getElementById('summary-error').innerHTML = "Length should be more than 20 characters";
+    }
+    if(summary!= "" && summary.length >= 20)
+    {
+        document.getElementById('summary-error').innerHTML = "";
+    }
+}
+// Profile error remove
+function profile_pic()
+{
+  var profile = document.getElementById('profile').value;
+  if(profile != '')
+  {
+      document.getElementById('profile-error').innerHTML = '';
+  }
 }
 
 // Education validation

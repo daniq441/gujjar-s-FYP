@@ -1,8 +1,27 @@
 @extends('layouts.post')
 
 @section('content')
+    <nav aria-label="breadcrumb" class="mt-3">
+        <div class="container">
+            <ol class="breadcrumb">
+                @if(@isset($bg_color))
+                    <li class="breadcrumb-item"><a href="/user-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}">Heading</a></li>
+                    <li class="breadcrumb-item"><a href="/education-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}">Education</a></li>
+                    <li class="breadcrumb-item"><a href="/experience-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}">Work History</a></li>
+                    <li class="breadcrumb-item active"><a href="/skill-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}">Skills</a></li>
+                    <li class="breadcrumb-item"><a href="#" class="btn primary-btn py-0 px-2">Preview</a></li>
+                @else
+                    <li class="breadcrumb-item"><a href="/user-description/{{$image}}/{{$color}}/{{ $templatePath }}">Heading</a></li>
+                    <li class="breadcrumb-item"><a href="/education-description/{{$image}}/{{$color}}/{{ $templatePath }}">Education</a></li>
+                    <li class="breadcrumb-item"><a href="/experience-description/{{$image}}/{{$color}}/{{ $templatePath }}">Work History</a></li>
+                    <li class="breadcrumb-item active"><a href="/skill-description/{{$image}}/{{$color}}/{{ $templatePath }}">Skills</a></li>
+                    <li class="breadcrumb-item"><a href="#" class="btn primary-btn py-0 px-2">Preview</a></li>
+                @endif
+            </ol>
+        </div>
+    </nav>
     <section class="container mb-3">
-        <div class="text-primary fs-3 fw-light py-4">
+        <div class="text-primary fs-3 fw-light pb-4 pt-2">
             Skills description
         </div>
         @foreach ($skill as $skill_data)
@@ -39,9 +58,9 @@
         </div>
         <div class="d-flex mb-3 justify-content-end pt-2">
             @if(@isset($bg_color))
-                <a href="/experience-create/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
+                <a href="/make-cv/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
             @else
-                <a href="/experience-create/{{ $image}}/{{$color}}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
+                <a href="/make-cv/{{ $image}}/{{$color}}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
             @endif
         </div>
     </section>

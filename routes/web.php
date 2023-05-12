@@ -13,6 +13,7 @@ use App\Http\Controllers\UserDetailController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\SkillController;
+use App\Models\UserDetail;
 use Illuminate\Support\Facades\Route;
 
 //public routes
@@ -103,14 +104,32 @@ Route::middleware('auth')->group(function () {
 
     // User detail form page
     Route::get('/form-page/{image}/{color}/{templatePath}', function ($image, $color, $templatePath) {
+        $user_id = auth()->id();
+        $user_existing_data = UserDetail::where('user_id', $user_id)->get();
+        $user_existing_data->each->delete();
         return view('pages/user_detail/create', compact('image', 'color', 'templatePath'));
     });
     Route::get('/form-page/{image}/{color}/{bg_color}/{templatePath}', function ($image, $color, $bg_color, $templatePath) {
+        $user_id = auth()->id();
+        $user_existing_data = UserDetail::where('user_id', $user_id)->get();
+        $user_existing_data->each->delete();
         return view('pages/user_detail/create', compact('image', 'color', 'bg_color', 'templatePath'));
     });
     // user detail
     Route::post('/user-detail/{image}/{color}/{bg_color}/{templatePath}', [UserDetailController::class, 'bgstore']);
     Route::post('/user-detail/{image}/{color}/{templatePath}', [UserDetailController::class, 'store']);
+    // User description
+    Route::get('/user-description/{image}/{color}/{bg_color}/{templatePath}', [UserDetailController::class, 'bgindex']);
+    Route::get('/user-description/{image}/{color}/{templatePath}', [UserDetailController::class, 'index']);
+    // User Delete
+    Route::get('/user-delete/{image}/{color}/{bg_color}/{templatePath}/{id}', [UserDetailController::class, 'bgdelete']);
+    Route::get('/user-delete/{image}/{color}/{templatePath}/{id}', [UserDetailController::class, 'delete']);
+    // User edit
+    Route::get('/user-edit/{image}/{color}/{bg_color}/{templatePath}/{id}', [UserDetailController::class, 'bgedit']);
+    Route::get('/user-edit/{image}/{color}/{templatePath}/{id}', [UserDetailController::class, 'edit']);
+    // User update
+    Route::post('/user-update/{image}/{color}/{bg_color}/{templatePath}/{id}', [UserDetailController::class, 'bgupdate']);
+    Route::post('/user-update/{image}/{color}/{templatePath}/{id}', [UserDetailController::class, 'update']);
 
     // Education form page
     Route::get('/education-create/{image}/{color}/{bg_color}/{templatePath}', [EducationController::class, 'bgcreate']);

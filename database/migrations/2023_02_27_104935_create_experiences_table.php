@@ -20,7 +20,7 @@ class CreateExperiencesTable extends Migration
             $table->string("company_name");
             $table->string("city");
             $table->string("country");
-            $table->string("description");
+            $table->text("description");
             $table->string("start_month");
             $table->string("start_year");
             $table->string("end_month");

@@ -29,9 +29,9 @@ class PostController extends Controller
         // dd($experiences);
         // dd($skills);
         // $post->delete()
-        $educations->each->delete();
-        $experiences->each->delete();
-        $skills->each->delete();
+        // $educations->each->delete();
+        // $experiences->each->delete();
+        // $skills->each->delete();
         // Education::truncate();
         // Experience::truncate();
         $posts = Post::latest()->take(20)->with('company')->get();

@@ -24,6 +24,8 @@ class CreateUserDetailsTable extends Migration
             $table->string('city');
             $table->string('country');
             $table->string('postalcode');
+            $table->string('picture')->nullable();
+            $table->text('summary');
             $table->timestamps();
         });
     }

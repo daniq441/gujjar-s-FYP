@@ -74,7 +74,7 @@ class User extends Authenticatable
     {
         return $this->hasMany(Skill::class);
     }
-    public function detail()
+    public function details()
     {
         return $this->hasOne(UserDetail::class);
     }

@@ -3,7 +3,7 @@
 @section('layout-holder')
   @include('inc.navbar')
   @yield('content')
-  @guest      
+  @guest
     @include('inc.login-banner')
   @endguest
   @include('inc.footer')
