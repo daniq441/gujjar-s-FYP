@@ -13,6 +13,7 @@ use App\Http\Controllers\UserDetailController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\CvController;
 use App\Models\UserDetail;
 use Illuminate\Support\Facades\Route;
 
@@ -187,6 +188,10 @@ Route::middleware('auth')->group(function () {
     //Skill update
     Route::post('/skill-update/{image}/{color}/{bg_color}/{templatePath}/{id}', [SkillController::class, 'bgupdate']);
     Route::post('/skill-update/{image}/{color}/{templatePath}/{id}', [SkillController::class, 'update']);
+
+    // CV bulding passing data
+    Route::get('/make-cv/{image}/{color}/{bg_color}/{templatePath}', [CvController::class, 'bgindex']);
+    Route::get('/make-cv/{image}/{color}/{templatePath}', [CvController::class, 'index']);
 
 
     // CV

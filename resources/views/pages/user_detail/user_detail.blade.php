@@ -61,10 +61,15 @@
         </div>
         {{-- @endforeach --}}
         <div class="d-flex mb-3 justify-content-end pt-2">
-            @if(@isset($bg_color))
+            {{-- @if(@isset($bg_color))
                 <a href="/education-create/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
             @else
                 <a href="/education-create/{{ $image}}/{{$color}}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
+            @endif --}}
+            @if(@isset($bg_color))
+                <a href="/education-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
+            @else
+                <a href="/education-description/{{ $image}}/{{$color}}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
             @endif
         </div>
     </section>

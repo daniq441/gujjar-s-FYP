@@ -12,13 +12,22 @@
                     <h5 class="card-title text-center text-uppercase fw-normal">create new cv</h5>
                     <p class="card-text text-center fw-normal">Create your Cv with professional Template</p>
                     {{-- Two type tamplates some have bg_color then check which template selected and next go with this template --}}
-                    @if(@isset($bg_color))
+                    {{-- @if(@isset($bg_color))
                         <div class="py-2 text-center">
                             <a href="/form-page/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}" class="btn primary-btn">Go with New</a>
                         </div>
                     @else
                         <div class="py-2 text-center">
                             <a href="/form-page/{{ $image}}/{{$color}}/{{ $templatePath }}" class="btn primary-btn">Go with New</a>
+                        </div>
+                    @endif --}}
+                    @if(@isset($bg_color))
+                        <div class="py-2 text-center">
+                            <a href="/user-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}" class="btn primary-btn">Go with New</a>
+                        </div>
+                    @else
+                        <div class="py-2 text-center">
+                            <a href="/user-description/{{ $image}}/{{$color}}/{{ $templatePath }}" class="btn primary-btn">Go with New</a>
                         </div>
                     @endif
                 </div>
