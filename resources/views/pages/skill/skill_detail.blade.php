@@ -9,13 +9,40 @@
                     <li class="breadcrumb-item"><a href="/education-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}">Education</a></li>
                     <li class="breadcrumb-item"><a href="/experience-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}">Work History</a></li>
                     <li class="breadcrumb-item active"><a href="/skill-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}">Skills</a></li>
-                    <li class="breadcrumb-item"><a href="#" class="btn primary-btn py-0 px-2">Preview</a></li>
+                    {{-- <li class="breadcrumb-item"><a href="#" class="btn primary-btn py-0 px-2">Preview</a></li> --}}
                 @else
                     <li class="breadcrumb-item"><a href="/user-description/{{$image}}/{{$color}}/{{ $templatePath }}">Heading</a></li>
                     <li class="breadcrumb-item"><a href="/education-description/{{$image}}/{{$color}}/{{ $templatePath }}">Education</a></li>
                     <li class="breadcrumb-item"><a href="/experience-description/{{$image}}/{{$color}}/{{ $templatePath }}">Work History</a></li>
                     <li class="breadcrumb-item active"><a href="/skill-description/{{$image}}/{{$color}}/{{ $templatePath }}">Skills</a></li>
-                    <li class="breadcrumb-item"><a href="#" class="btn primary-btn py-0 px-2">Preview</a></li>
+                    {{-- <li class="breadcrumb-item"><a href="#" class="btn primary-btn py-0 px-2">Preview</a></li> --}}
+                    <li class="breadcrumb-item active">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn primary-btn py-0 px-2" data-toggle="modal" data-target="#modelId">
+                            Preview
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Preview CV</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <iframe src="/{{ $templatePath }}/{{ $image}}/{{$color}}" width="100%" height="600px"></iframe>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Dawnload</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 @endif
             </ol>
         </div>
@@ -44,7 +71,7 @@
             </div>
             <div class="card-body">
                 {{-- <h5 class="card-title text-primary">Yours Skills</h5> --}}
-                <p class="card-text fw-light"><b>Name: </b>{{ $skill_data->skillName }}</p>
+                <p class="card-text fw-light"><b>Title: </b>{{ $skill_data->skillName }}</p>
                 <p class="card-text fw-light"><b>Rating: </b>{{ $skill_data->skillRating }}</p>
             </div>
         </div>
@@ -58,9 +85,9 @@
         </div>
         <div class="d-flex mb-3 justify-content-end pt-2">
             @if(@isset($bg_color))
-                <a href="/make-cv/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
+                <a href="/{{ $templatePath }}/{{ $image}}/{{$color}}/{{ $bg_color }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
             @else
-                <a href="/make-cv/{{ $image}}/{{$color}}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
+                <a href="/{{ $templatePath }}/{{ $image}}/{{$color}}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
             @endif
         </div>
     </section>

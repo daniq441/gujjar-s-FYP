@@ -189,21 +189,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/skill-update/{image}/{color}/{bg_color}/{templatePath}/{id}', [SkillController::class, 'bgupdate']);
     Route::post('/skill-update/{image}/{color}/{templatePath}/{id}', [SkillController::class, 'update']);
 
-    // CV bulding passing data
-    Route::get('/make-cv/{image}/{color}/{bg_color}/{templatePath}', [CvController::class, 'bgindex']);
-    Route::get('/make-cv/{image}/{color}/{templatePath}', [CvController::class, 'index']);
+    // // CV bulding passing data
+    // Route::get('/make-cv/{image}/{color}/{bg_color}/{templatePath}', [CvController::class, 'bgindex']);
+    // Route::get('/make-cv/{image}/{color}/{templatePath}', [CvController::class, 'index']);
 
 
     // CV
-    Route::get('/cvtemp1/{image}/{color}', function ($image, $color) {
-        return view('Templates/cvTemplates/template1', compact('color', 'image'));
-    });
-    Route::get('/cvtemp2/{image}/{color}/{bg_color}', function ($image, $color, $bg_color) {
-        return view('Templates/cvTemplates/template2', compact('image', 'color', 'bg_color'));
-    });
-    Route::get('/cvtemp3/{image}/{color}/{bg_color}', function ($image, $color, $bg_color) {
-        return view('Templates/cvTemplates/template3', compact('image', 'color', 'bg_color'));
-    });
+    Route::get('/cvtemp1/{image}/{color}', [CvController::class, 'template1']);
+    Route::get('/cvtemp2/{image}/{color}/{bg_color}',  [CvController::class, 'template2']);
+    Route::get('/cvtemp3/{image}/{color}/{bg_color}',  [CvController::class, 'template3']);
 
     // Cover Letter
     Route::get('/cltemp1', function () {
