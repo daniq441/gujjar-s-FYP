@@ -1,7 +1,80 @@
 @extends('layouts.post')
 
 @section('content')
-    <section class="container mb-3">
+    <nav aria-label="breadcrumb" class="mt-3">
+        <div class="container">
+            <ol class="breadcrumb">
+                @if(@isset($bg_color))
+                    <li class="breadcrumb-item"><a href="/user-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}">Heading</a></li>
+                    <li class="breadcrumb-item active"><a href="/experience-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}">Work History</a></li>
+                    <li class="breadcrumb-item"><a href="/education-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}">Education</a></li>
+                    <li class="breadcrumb-item"><a href="/skill-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}">Skills</a></li>
+                    {{-- <li class="breadcrumb-item"><a href="#" class="btn primary-btn py-0 px-2">Preview</a></li> --}}
+                    <li class="breadcrumb-item">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn primary-btn py-0 px-2" data-toggle="modal" data-target="#modelId">
+                            Preview
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Preview CV</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <iframe src="/{{ $templatePath }}/{{ $image}}/{{$color}}/{{ $bg_color }}" width="100%" height="600px"></iframe>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Dawnload</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                @else
+                    <li class="breadcrumb-item"><a href="/user-description/{{$image}}/{{$color}}/{{ $templatePath }}">Heading</a></li>
+                    <li class="breadcrumb-item active"><a href="/experience-description/{{$image}}/{{$color}}/{{ $templatePath }}">Work History</a></li>
+                    <li class="breadcrumb-item"><a href="/education-description/{{$image}}/{{$color}}/{{ $templatePath }}">Education</a></li>
+                    <li class="breadcrumb-item "><a href="/skill-description/{{$image}}/{{$color}}/{{ $templatePath }}">Skills</a></li>
+                    {{-- <li class="breadcrumb-item"><a href="#" class="btn primary-btn py-0 px-2">Preview</a></li> --}}
+                    <li class="breadcrumb-item">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn primary-btn py-0 px-2" data-toggle="modal" data-target="#modelId">
+                            Preview
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Preview CV</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <iframe src="/{{ $templatePath }}/{{ $image}}/{{$color}}" width="100%" height="600px"></iframe>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Dawnload</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                @endif
+            </ol>
+        </div>
+    </nav>
+    <section class="container mb-3 min-height-320">
         <div class="text-primary fs-3 fw-light pb-3 pt-3 ">
             Experience Detail
         </div>
@@ -50,9 +123,9 @@
                 <a href="/skill-create/{{ $image}}/{{$color}}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
             @endif --}}
             @if(@isset($bg_color))
-                <a href="/skill-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
+                <a href="/education-description/{{ $image}}/{{$color}}/{{ $bg_color }}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
             @else
-                <a href="/skill-description/{{ $image}}/{{$color}}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
+                <a href="/education-description/{{ $image}}/{{$color}}/{{ $templatePath }}" class="btn primary-btn">Next <i class="fa-solid fa-chevron-right"></i></a>
             @endif
         </div>
     </section>

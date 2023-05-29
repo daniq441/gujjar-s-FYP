@@ -156,6 +156,17 @@ class UserDetailController extends Controller
     public function update($image, $color, $templatePath, $id, Request $request, UserDetail $userDetail)
     {
         // dd($request);
+        $request->validate([
+            'FNAM' => 'required',
+            'LNAM' => 'required',
+            'ADD' => 'required',
+            'CITY' => 'required',
+            'CNTY' => 'required',
+            'ZIPC' => 'required',
+            'HPHN' => 'required',
+            'EMAI' => 'required',
+            'SUMMARY' => 'required',
+        ]);
         $user_detail = UserDetail::whereId($id)->first();
         if(isset($request->profile))
         {
@@ -182,6 +193,17 @@ class UserDetailController extends Controller
     public function bgupdate($image, $color, $bg_color, $templatePath, $id, Request $request, UserDetail $userDetail)
     {
         // dd($request);
+        $request->validate([
+            'FNAM' => 'required',
+            'LNAM' => 'required',
+            'ADD' => 'required',
+            'CITY' => 'required',
+            'CNTY' => 'required',
+            'ZIPC' => 'required',
+            'HPHN' => 'required',
+            'EMAI' => 'required',
+            'SUMMARY' => 'required',
+        ]);
         $user_detail = UserDetail::whereId($id)->first();
         if(isset($request->profile))
         {

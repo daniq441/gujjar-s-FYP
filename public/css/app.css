@@ -12168,3 +12168,8 @@ button {
 {
     width: 10px;
 }
+
+.min-height-320
+{
+    min-height: 320px;
+}
