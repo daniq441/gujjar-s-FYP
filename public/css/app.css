@@ -12173,3 +12173,8 @@ button {
 {
     min-height: 320px;
 }
+
+.fas
+{
+    font-size: 16px !important;
+}

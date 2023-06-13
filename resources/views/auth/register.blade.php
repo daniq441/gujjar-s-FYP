@@ -8,13 +8,13 @@
             <div class="login-poster">
                 {{-- <img src="" alt=""> --}}
                 <h2 class="my-3 slogon">
-                    Register for a better opportunity
+                    Become a member for a greater potential.
                 </h2>
 
-                <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i> Its free and always be</p>
+                {{-- <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i> Its free and always be</p>
                 <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i>  Your Confidentiality is Assured</p>
                 <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i> We Provide Career Opportunities</p>
-                <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i> Most Trusted Cv Maker Job Portal in world</p>
+                <p class="text-white mb-3 lead"><i class="fas fa-angle-right"></i> Most Trusted Cv Maker Job Portal in world</p> --}}
             </div>
         </div>
 
