@@ -50,7 +50,17 @@ class ClUserController extends Controller
             "skill2" => 'required',
             "skill3" => 'required',
         ]);
-        dd($user_data);
+        // dd($user_data);
+        $userData = [];
+        $user_data['firstName'] = $request->firstName;
+        $user_data['lastName'] = $request->lastName;
+        $user_data['profession'] = $request->profession;
+        $user_data['phone'] = $request->phone;
+        $user_data['email'] = $request->email;
+        $user_data['address'] = $request->city.', '.$request->country .', '.$request->zipCode;
+
+
+        // dd($user_data['address']);
     }
 
     /**
