@@ -206,16 +206,16 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/cltemp1', function () {
-        return view('Templates/CoverLetterTemplates/clTemplate1');
+        return view('Template/CoverLetterTemplates/clTemplate1');
     });
     Route::get('/cltemp2', function () {
-        return view('Templates/CoverLetterTemplates/clTemplate2');
+        return view('Template/CoverLetterTemplates/clTemplate2');
     });
     Route::get('/cltemp3', function () {
-        return view('Templates/CoverLetterTemplates/clTemplate3');
+        return view('Template/CoverLetterTemplates/clTemplate3');
     });
     Route::get('/cltemp4', function () {
-        return view('Templates/CoverLetterTemplates/clTemplate4');
+        return view('Template/CoverLetterTemplates/clTemplate4');
     });
 });
 // CV

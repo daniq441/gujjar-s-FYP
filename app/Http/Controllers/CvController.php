@@ -20,7 +20,7 @@ class CvController extends Controller
         // dd($experience);
         // dd($skill);
         // return redirect('/' .$templatePath. '/' . $image . '/' . $color);
-        return view('Templates/cvTemplates/template1', compact('color', 'image','user_detail', 'education','experience','skill'));
+        return view('Template/CVTemplates/template1', compact('color', 'image','user_detail', 'education','experience','skill'));
 
     }
     public function template2($image, $color, $bg_color)
@@ -34,7 +34,7 @@ class CvController extends Controller
         // dd($experience);
         // dd($skill);
         // return redirect('/' .$templatePath. '/' . $image . '/' . $color);
-        return view('Templates/cvTemplates/template2', compact('color', 'image', 'bg_color', 'user_detail', 'education','experience','skill'));
+        return view('Template/CVTemplates/template2', compact('color', 'image', 'bg_color', 'user_detail', 'education','experience','skill'));
 
     }
     public function template3($image, $color, $bg_color)
@@ -48,7 +48,7 @@ class CvController extends Controller
         // dd($experience);
         // dd($skill);
         // return redirect('/' .$templatePath. '/' . $image . '/' . $color);
-        return view('Templates/cvTemplates/template3', compact('color', 'image', 'bg_color', 'user_detail', 'education','experience','skill'));
+        return view('Template/CVTemplates/template3', compact('color', 'image', 'bg_color', 'user_detail', 'education','experience','skill'));
 
     }
 }
