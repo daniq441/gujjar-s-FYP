@@ -201,7 +201,8 @@ Route::middleware('auth')->group(function () {
 
     // Cover Letter
     Route::get('CL-detail/{templatePath}',[CoverletterController::class, 'index'])->name('detailCoverletter');
-    Route::get('users-info/{templatePath}',[ClUserController::class, 'index'])->name('detailCoverletter');
+    Route::get('users-create/{templatePath}',[ClUserController::class, 'create'])->name('clUserDetail');
+    Route::post('users-store/{templatePath}',[ClUserController::class, 'store'])->name('clUserStore');
 
 
     Route::get('/cltemp1', function () {

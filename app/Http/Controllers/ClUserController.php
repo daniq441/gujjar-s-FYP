@@ -21,9 +21,10 @@ class ClUserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($templatePath)
     {
-        //
+        // dd($templatePath);
+        return view('cover-letter/userDetail/user_create', compact('templatePath'));
     }
 
     /**
@@ -32,9 +33,24 @@ class ClUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $templatePath)
     {
-        //
+        // dd($request);
+        $user_data = $request->validate([
+            "firstName" => 'required',
+            "lastName" => 'required',
+            "profession" => 'required',
+            "jobTitle" => 'required',
+            "city" => 'required',
+            "country" => 'required',
+            "zipCode" => 'required',
+            "phone" => 'required',
+            "email" => 'required|regex:/^.+@.+$/',
+            "skill1" => 'required',
+            "skill2" => 'required',
+            "skill3" => 'required',
+        ]);
+        dd($user_data);
     }
 
     /**

@@ -45,7 +45,7 @@
                 <div class="text-center">
                     <p class="p-5 text-danger">No data Found</p>
                     <div class="py-2 text-center">
-                        <a href="{{ route('ok',[$templatePath]) }}" class="btn primary-btn">Add New Info</a>
+                        <a href="{{ route('clUserDetail',[$templatePath]) }}" class="btn primary-btn">Add New Info</a>
                     </div>
                 </div>
             @endif
