@@ -15,22 +15,22 @@
         <div class="pt-5">
             <div class="row row-cols-md-2">
                 <div class="col-sm-12 px-3 pt-2 pb-4">
-                    <a href="/cltemp1"><img class="img-fluid border" src="{{ url('images/clPageImages/tem-image-1.png')}}"></a>
+                    <a href="{{ route('detailCoverletter',['cascade-template']) }}"><img class="img-fluid border" src="{{ url('images/clPageImages/tem-image-1.png')}}"></a>
                     <h1 class="py-4 fs-2">Cascade</h1>
                     <p>Professional cover letter template with a column for contact information</p>
                 </div>
                 <div class="col-sm-12 px-3 pt-2 pb-4">
-                    <a href="/cltemp2"><img class="img-fluid border" src="{{ url('images/clPageImages/tem-image-2.png')}}"></a>
+                    <a href="{{ route('detailCoverletter',['crisp-template']) }}"><img class="img-fluid border" src="{{ url('images/clPageImages/tem-image-2.png')}}"></a>
                     <h1 class="py-4 fs-2">Crisp</h1>
                     <p>Creative cover letter template with graphic elements and two columns</p>
                 </div>
                 <div class="col-sm-12 px-3 pt-2 pb-4">
-                    <a href="/cltemp3"><img class="img-fluid border" src="{{ url('images/clPageImages/tem-image-3.png')}}"></a>
+                    <a href="{{ route('detailCoverletter',['influx-template']) }}"><img class="img-fluid border" src="{{ url('images/clPageImages/tem-image-3.png')}}"></a>
                     <h1 class="py-4 fs-2">Influx</h1>
                     <p>Elegant cover letter template with a single column classic feel</p>
                 </div>
                 <div class="col-sm-12 px-3 pt-2 pb-4">
-                    <a href="/cltemp4"><img class="img-fluid border" src="{{ url('images/clPageImages/tem-image-4.png')}}"></a>
+                    <a href="{{ route('detailCoverletter',['iconic-Template']) }}"><img class="img-fluid border" src="{{ url('images/clPageImages/tem-image-4.png')}}"></a>
                     <h1 class="py-4 fs-2">Iconic</h1>
                     <p>Clean cover letter template with plenty of whitespace and a layout that feels complete</p>
                 </div>

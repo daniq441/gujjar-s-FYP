@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\AuthorController;
 use App\Http\Controllers\CompanyCategoryController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\CoverletterController;
+use App\Http\Controllers\ClUserController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\PostController;
@@ -192,14 +194,16 @@ Route::middleware('auth')->group(function () {
     // // CV bulding passing data
     // Route::get('/make-cv/{image}/{color}/{bg_color}/{templatePath}', [CvController::class, 'bgindex']);
     // Route::get('/make-cv/{image}/{color}/{templatePath}', [CvController::class, 'index']);
-
-
     // CV
     Route::get('/cvtemp1/{image}/{color}', [CvController::class, 'template1']);
     Route::get('/cvtemp2/{image}/{color}/{bg_color}',  [CvController::class, 'template2']);
     Route::get('/cvtemp3/{image}/{color}/{bg_color}',  [CvController::class, 'template3']);
 
     // Cover Letter
+    Route::get('CL-detail/{templatePath}',[CoverletterController::class, 'index'])->name('detailCoverletter');
+    Route::get('users-info/{templatePath}',[ClUserController::class, 'index'])->name('detailCoverletter');
+
+
     Route::get('/cltemp1', function () {
         return view('Templates/CoverLetterTemplates/clTemplate1');
     });
