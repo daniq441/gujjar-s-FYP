@@ -54,7 +54,7 @@
                         <div class="col-6 field-1">
                             <div class="form-group">
                                 <label class="control-label " for="job">Job Title <span class="text-danger fw-bold">*</span></label>
-                                <input type="text" name="jobTitle" placeholder="(i.e). Lahore" maxlength="100" class="form-control" id="job" value="{{ old('jobTitle') }}">
+                                <input type="text" name="jobTitle" placeholder="(i.e). Backend development" maxlength="100" class="form-control" id="job" value="{{ old('jobTitle') }}">
                                 @error('jobTitle')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
