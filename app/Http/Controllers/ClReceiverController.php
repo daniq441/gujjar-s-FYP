@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\clreceiver;
 use Illuminate\Http\Request;
 
 class ClReceiverController extends Controller
@@ -21,9 +22,9 @@ class ClReceiverController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($templatePath)
     {
-        //
+        return view('cover-letter.recipient.recipient_create', compact('templatePath'));
     }
 
     /**
@@ -32,9 +33,35 @@ class ClReceiverController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $templatePath)
     {
-        //
+        $request->validate([
+            'companyName' => 'required'
+        ]);
+        $user_id = auth()->id();
+        $clRecipientData = clreceiver::where('user_id', $user_id)->get();
+        // dd(!$clRecipientData->isEmpty());
+        if(!$clRecipientData->isEmpty())
+        {
+            $clRecipientData->each->delete();
+        }
+
+        $recipient_data = [];
+        $recipient_data['firstName'] = $request->firstName;
+        $recipient_data['lastName'] = $request->lastName;
+        $recipient_data['position'] = $request->position;
+        $recipient_data['companyName'] = $request->companyName;
+        if($request->city == null || $request->country == null || $request->zipCode == null)
+        {
+            $recipient_data['address'] = null;
+        }
+        else
+        {
+            $recipient_data['address'] = $request->city.', '.$request->country .', '.$request->zipCode;
+        }
+        // dd($recipient_data);
+        auth()->user()->clrecipients()->create($recipient_data);
+        return redirect()->route('detailCoverletter',[$templatePath]);
     }
 
     /**

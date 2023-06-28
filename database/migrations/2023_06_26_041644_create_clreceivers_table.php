@@ -15,6 +15,12 @@ class CreateClreceiversTable extends Migration
     {
         Schema::create('clreceivers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('firstName')->nullable();
+            $table->string('lastName')->nullable();
+            $table->string('companyName');
+            $table->string('position')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

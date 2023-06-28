@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class clreceiver extends Model
 {
-    use HasFactory;
+    // use HasFactory;
+    protected $fillable = ['firstName','lastName','position','address','companyName'];
 }

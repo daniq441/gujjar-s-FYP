@@ -60,7 +60,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-6 col-xl-3 field-2">
+                        <div class="col-6 field-2">
                             <div class="form-group ">
                                 <label class="control-label " for="experience">Experience</label>
                                 <select id="experience" name="experience" class="form-select">

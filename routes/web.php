@@ -3,6 +3,7 @@
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\Auth\AdminController;
 use App\Http\Controllers\Auth\AuthorController;
+use App\Http\Controllers\ClReceiverController;
 use App\Http\Controllers\CompanyCategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CoverletterController;
@@ -201,8 +202,12 @@ Route::middleware('auth')->group(function () {
 
     // Cover Letter
     Route::get('CL-detail/{templatePath}',[CoverletterController::class, 'index'])->name('detailCoverletter');
+    // Cover Letter information delete
+    Route::get('CL-delete/{templatePath}/{userId}/{recipientId}',[CoverletterController::class, 'delete'])->name('deleteCoverletter');
     Route::get('users-create/{templatePath}',[ClUserController::class, 'create'])->name('clUserDetail');
     Route::post('users-store/{templatePath}',[ClUserController::class, 'store'])->name('clUserStore');
+    Route::get('recipient-create/{templatePath}',[ClReceiverController::class, 'create'])->name('clRecipientCreate');
+    Route::post('recipient-store/{templatePath}',[ClReceiverController::class, 'store'])->name('clRecipientStore');
 
 
     Route::get('/cltemp1', function () {

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\clreceiver;
+use App\Models\cluser;
 use Illuminate\Http\Request;
 
 class CoverletterController extends Controller
@@ -13,7 +15,9 @@ class CoverletterController extends Controller
      */
     public function index($templatePath)
     {
-        return view('cover-letter/cl_detail', compact('templatePath'));
+        $clUserData = auth()->user()->cldetails;
+        $clRecipientData = auth()->user()->clrecipients;
+        return view('cover-letter/cl_detail', compact('templatePath', 'clUserData','clRecipientData'));
     }
 
     /**
@@ -77,8 +81,13 @@ class CoverletterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($templatePath, $userId, $recipientId)
     {
-        //
+        $userData = cluser::whereId($userId)->first();
+        $recipientData = clreceiver::whereId($recipientId)->first();
+        // dd($userData, $recipientData);
+        $userData->delete();
+        $recipientData->delete();
+        return redirect()->route('detailCoverletter',[$templatePath]);
     }
 }

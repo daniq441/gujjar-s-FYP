@@ -15,6 +15,16 @@ class CreateClusersTable extends Migration
     {
         Schema::create('clusers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('firstName');
+            $table->string('lastName');
+            $table->string('profession');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('address');
+            $table->text('opening');
+            $table->text('body');
+            $table->text('closing');
             $table->timestamps();
         });
     }

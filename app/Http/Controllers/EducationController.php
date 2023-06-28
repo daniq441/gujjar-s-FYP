@@ -13,7 +13,7 @@ class EducationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($image, $color, $templatePath)
+public function index($image, $color, $templatePath)
     {
         $education = auth()->user()->education;
         return view('pages/education/educationdetail', compact('image', 'color', 'templatePath', 'education'));
