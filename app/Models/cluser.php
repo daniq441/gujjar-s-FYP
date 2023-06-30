@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class cluser extends Model
 {
     // use HasFactory;
-    protected $fillable = ['firstName','lastName','profession','phone','email','address','opening','body','closing'];
+    protected $fillable = ['firstName','lastName','profession', 'jobTitle', 'phone','email','city', 'country', 'zipCode', 'opening','body','closing'];
 }

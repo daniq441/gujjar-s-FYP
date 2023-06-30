@@ -30,7 +30,7 @@
                     <p>Elegant cover letter template with a single column classic feel</p>
                 </div>
                 <div class="col-sm-12 px-3 pt-2 pb-4">
-                    <a href="{{ route('detailCoverletter',['iconic-Template']) }}"><img class="img-fluid border" src="{{ url('images/clPageImages/tem-image-4.png')}}"></a>
+                    <a href="{{ route('detailCoverletter',['iconic-template']) }}"><img class="img-fluid border" src="{{ url('images/clPageImages/tem-image-4.png')}}"></a>
                     <h1 class="py-4 fs-2">Iconic</h1>
                     <p>Clean cover letter template with plenty of whitespace and a layout that feels complete</p>
                 </div>

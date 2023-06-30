@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\clreceiver;
 use App\Models\cluser;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CoverletterController extends Controller
 {
@@ -15,11 +16,39 @@ class CoverletterController extends Controller
      */
     public function index($templatePath)
     {
+
         $clUserData = auth()->user()->cldetails;
         $clRecipientData = auth()->user()->clrecipients;
         return view('cover-letter/cl_detail', compact('templatePath', 'clUserData','clRecipientData'));
     }
-
+    public function cascadeTemplate()
+    {
+        $date = Carbon::now()->format('d/m/Y');
+        $clUserData = auth()->user()->cldetails;
+        $clRecipientData = auth()->user()->clrecipients;
+        return view('appTemplates/CLTemplates/clTemplate1', compact('clUserData', 'clRecipientData', 'date'));
+    }
+    public function crispTemplate()
+    {
+        $date = Carbon::now()->format('d/m/Y');
+        $clUserData = auth()->user()->cldetails;
+        $clRecipientData = auth()->user()->clrecipients;
+        return view('appTemplates/CLTemplates/clTemplate2', compact('clUserData', 'clRecipientData', 'date'));
+    }
+    public function influxTemplate()
+    {
+        $date = Carbon::now()->format('d/m/Y');
+        $clUserData = auth()->user()->cldetails;
+        $clRecipientData = auth()->user()->clrecipients;
+        return view('appTemplates/CLTemplates/clTemplate3', compact('clUserData', 'clRecipientData', 'date'));
+    }
+    public function iconicTemplate()
+    {
+        $date = Carbon::now()->format('d/m/Y');
+        $clUserData = auth()->user()->cldetails;
+        $clRecipientData = auth()->user()->clrecipients;
+        return view('appTemplates/CLTemplates/clTemplate4', compact('clUserData', 'clRecipientData', 'date'));
+    }
     /**
      * Show the form for creating a new resource.
      *

@@ -32,7 +32,7 @@
             <div class="p-2 w-75 ">
                 @if(isset($user_detail))
                     <div class="font-11 pt-2">
-                        <p>{{ $user_detail->summary }}</p>
+                        <p align="justify">{{ $user_detail->summary }}</p>
                         {{-- <p>Highly-skilled and motivated senior software engineer with 9 years of experience. Enhanced performance of 24 applications using ASP.NET Web Forms and MVC Razor. Increased revenue by 8% by analyzing and improving app monetization strategies. Seeking to draw on proven software development and engineering skills to increase and improve Lexor’s impressive line of applications.</p> --}}
                     </div>
                 @endif
@@ -66,7 +66,9 @@
                                 </div>
                                 <div>
                                     <ul class="font-11 ps-4">
-                                        <li>{{ $exp_data->description }}</li>
+                                        <li>
+                                            <p align="justify">{{ $exp_data->description }}</p>
+                                        </li>
                                         {{-- <li>Oversaw software development and coded profitable apps using C#, C++, ASP, Java.</li> --}}
                                     </ul>
                                 </div>

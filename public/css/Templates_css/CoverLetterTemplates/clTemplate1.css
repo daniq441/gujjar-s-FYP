@@ -1,6 +1,7 @@
 body .container
 {
     max-width: 630px;
+    min-width: 630px;
 }
 
 .style

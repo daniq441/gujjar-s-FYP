@@ -24,7 +24,7 @@ class ClReceiverController extends Controller
      */
     public function create($templatePath)
     {
-        return view('cover-letter.recipient.recipient_create', compact('templatePath'));
+        return view('cover-letter.recipient.clrecipient_create', compact('templatePath'));
     }
 
     /**
@@ -51,15 +51,9 @@ class ClReceiverController extends Controller
         $recipient_data['lastName'] = $request->lastName;
         $recipient_data['position'] = $request->position;
         $recipient_data['companyName'] = $request->companyName;
-        if($request->city == null || $request->country == null || $request->zipCode == null)
-        {
-            $recipient_data['address'] = null;
-        }
-        else
-        {
-            $recipient_data['address'] = $request->city.', '.$request->country .', '.$request->zipCode;
-        }
-        // dd($recipient_data);
+        $recipient_data['city'] = $request->city;
+        $recipient_data['country'] = $request->country;
+        $recipient_data['zipCode'] = $request->zipCode;
         auth()->user()->clrecipients()->create($recipient_data);
         return redirect()->route('detailCoverletter',[$templatePath]);
     }
@@ -81,9 +75,10 @@ class ClReceiverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($templatePath, $recipientId)
     {
-        //
+        $recipientData = clreceiver::whereId($recipientId)->first();
+        return view('cover-letter.recipient.clrecipient_edit', compact('templatePath', 'recipientData'));
     }
 
     /**
@@ -93,9 +88,22 @@ class ClReceiverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $templatePath, $recipientId)
     {
-        //
+        $request->validate([
+            'companyName' => 'required'
+        ]);
+        $recipient_data = clreceiver::whereId($recipientId)->first();
+        $recipient_data->firstName = $request->firstName;
+        $recipient_data->lastName = $request->lastName;
+        $recipient_data->position = $request->position;
+        $recipient_data->companyName = $request->companyName;
+        $recipient_data->city = $request->city;
+        $recipient_data->country = $request->country;
+        $recipient_data->zipCode = $request->zipCode;
+        $recipient_data->save();
+        return redirect()->route('detailCoverletter', [$templatePath]);
+
     }
 
     /**

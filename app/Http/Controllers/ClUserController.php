@@ -25,7 +25,7 @@ class ClUserController extends Controller
     public function create($templatePath)
     {
         // dd($templatePath);
-        return view('cover-letter/userDetail/user_create', compact('templatePath'));
+        return view('cover-letter/userDetail/cluser_create', compact('templatePath'));
     }
 
     /**
@@ -64,9 +64,14 @@ class ClUserController extends Controller
         $user_data['firstName'] = $request->firstName;
         $user_data['lastName'] = $request->lastName;
         $user_data['profession'] = $request->profession;
+        $user_data['jobTitle'] = $request->jobTitle;
         $user_data['phone'] = $request->phone;
         $user_data['email'] = $request->email;
-        $user_data['address'] = $request->city.', '.$request->country .', '.$request->zipCode;
+        $user_data['city'] = $request->city;
+        $user_data['country'] = $request->country;
+        $user_data['zipCode'] = $request->zipCode;
+
+
         if($request->experience == '0')
         {
             if($random_number == 1)
@@ -120,9 +125,10 @@ class ClUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($templatePath, $userId)
     {
-        //
+        $userData = cluser::whereId($userId)->first();
+        return view('cover-letter.userDetail.cluser_edit', compact('templatePath', 'userData'));
     }
 
     /**
@@ -132,9 +138,122 @@ class ClUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $templatePath, $userId)
     {
-        //
+        $request->validate([
+            "firstName" => 'required',
+            "lastName" => 'required',
+            "profession" => 'required',
+            "jobTitle" => 'required',
+            "city" => 'required',
+            "country" => 'required',
+            "zipCode" => 'required',
+            "phone" => 'required',
+            "email" => 'required|regex:/^.+@.+$/',
+        ]);
+        // dd($request);
+        $user_data = cluser::whereId($userId)->first();
+        $user_data->firstName = $request->firstName;
+        $user_data->lastName = $request->lastName;
+        $user_data->profession = $request->profession;
+        $user_data->jobTitle = $request->jobTitle;
+        $user_data->city = $request->city;
+        $user_data->country = $request->country;
+        $user_data->zipCode = $request->zipCode;
+        $user_data->phone = $request->phone;
+        $user_data->email = $request->email;
+        $user_data->save();
+        return redirect()->route('detailCoverletter', [$templatePath]);
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function openingEdit($templatePath, $userId)
+    {
+        $userData = cluser::whereId($userId)->first();
+        return view('cover-letter.userDetail.clOpening_edit', compact('templatePath', 'userData'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function openingUpdate(Request $request, $templatePath, $userId)
+    {
+        $request->validate([
+            "opening" => 'required',
+        ]);
+        // dd($request);
+        $user_data = cluser::whereId($userId)->first();
+        $user_data->opening = $request->opening;
+        $user_data->save();
+        return redirect()->route('detailCoverletter', [$templatePath]);
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function bodyEdit($templatePath, $userId)
+    {
+        $userData = cluser::whereId($userId)->first();
+        return view('cover-letter.userDetail.clBody_edit', compact('templatePath', 'userData'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function closingUpdate(Request $request, $templatePath, $userId)
+    {
+        $request->validate([
+            "closing" => 'required',
+        ]);
+        // dd($request);
+        $user_data = cluser::whereId($userId)->first();
+        $user_data->closing = $request->closing;
+        $user_data->save();
+        return redirect()->route('detailCoverletter', [$templatePath]);
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function closingEdit($templatePath, $userId)
+    {
+        $userData = cluser::whereId($userId)->first();
+        return view('cover-letter.userDetail.clClosing_edit', compact('templatePath', 'userData'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function bodyUpdate(Request $request, $templatePath, $userId)
+    {
+        $request->validate([
+            "body" => 'required',
+        ]);
+        // dd($request);
+        $user_data = cluser::whereId($userId)->first();
+        $user_data->body = $request->body;
+        $user_data->save();
+        return redirect()->route('detailCoverletter', [$templatePath]);
     }
 
     /**

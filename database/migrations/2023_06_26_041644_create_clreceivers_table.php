@@ -20,7 +20,9 @@ class CreateClreceiversTable extends Migration
             $table->string('lastName')->nullable();
             $table->string('companyName');
             $table->string('position')->nullable();
-            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
+            $table->string('zipCode')->nullable();
             $table->timestamps();
         });
     }

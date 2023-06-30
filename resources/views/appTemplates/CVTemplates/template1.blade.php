@@ -28,7 +28,7 @@
                     @endif
                 </div>
                 <div class="pt-2 font-11 height">
-                    <p>{{ $user_detail->summary }}</p>
+                    <p align="justify">{{ $user_detail->summary }}</p>
                 </div>
             @endif
         </footer>
@@ -119,7 +119,9 @@
                                         </div>
                                         <div>
                                             <ul class="font-11 ps-4">
-                                                <li>{{ $exp_data->description }}</li>
+                                                <li>
+                                                    <p align="justify">{{ $exp_data->description }}</p>
+                                                </li>
                                                 {{-- <li>Improved and optimized main website’s UI for seamless customer experience.</li> --}}
                                             </ul>
                                         </div>

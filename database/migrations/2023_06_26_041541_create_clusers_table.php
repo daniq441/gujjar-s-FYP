@@ -19,9 +19,12 @@ class CreateClusersTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('profession');
+            $table->string('jobTitle');
             $table->string('phone');
             $table->string('email');
-            $table->string('address');
+            $table->string('city');
+            $table->string('country');
+            $table->string('zipCode');
             $table->text('opening');
             $table->text('body');
             $table->text('closing');

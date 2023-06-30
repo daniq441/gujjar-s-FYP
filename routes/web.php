@@ -202,26 +202,45 @@ Route::middleware('auth')->group(function () {
 
     // Cover Letter
     Route::get('CL-detail/{templatePath}',[CoverletterController::class, 'index'])->name('detailCoverletter');
-    // Cover Letter information delete
+    // Information delete
     Route::get('CL-delete/{templatePath}/{userId}/{recipientId}',[CoverletterController::class, 'delete'])->name('deleteCoverletter');
-    Route::get('users-create/{templatePath}',[ClUserController::class, 'create'])->name('clUserDetail');
+
+    // Cl user create
+    Route::get('CL-usersDetail-create/{templatePath}',[ClUserController::class, 'create'])->name('clUserDetail');
+    // Cl user store
     Route::post('users-store/{templatePath}',[ClUserController::class, 'store'])->name('clUserStore');
+    // Cl user edit
+    Route::get('CL-userDetail-edit/{templatePath}/{userId}',[ClUserController::class, 'edit'])->name('userEditCoverletter');
+    // Cl user update
+    Route::post('CL-userDetail-update/{templatePath}/{userId}',[ClUserController::class, 'update'])->name('userUpdateCoverletter');
+    //Cl opening edit
+    Route::get('CL-opening-edit/{templatePath}/{userId}',[ClUserController::class, 'openingEdit'])->name('clOpeningEdit');
+    //Cl opening update
+    Route::post('CL-opening-update/{templatePath}/{userId}',[ClUserController::class, 'openingUpdate'])->name('clOpeningUpdate');
+    //Cl body edit
+    Route::get('CL-body-edit/{templatePath}/{userId}',[ClUserController::class, 'bodyEdit'])->name('clBodyEdit');
+    //Cl body update
+    Route::post('CL-body-update/{templatePath}/{userId}',[ClUserController::class, 'bodyUpdate'])->name('clBodyUpdate');
+    //Cl closing edit
+    Route::get('CL-closing-edit/{templatePath}/{userId}',[ClUserController::class, 'closingEdit'])->name('clClosingEdit');
+    //Cl closing update
+    Route::post('CL-closing-update/{templatePath}/{userId}',[ClUserController::class, 'closingUpdate'])->name('clClosingUpdate');
+
+
+    // CL recipient create
     Route::get('recipient-create/{templatePath}',[ClReceiverController::class, 'create'])->name('clRecipientCreate');
+    // CL recipient store
     Route::post('recipient-store/{templatePath}',[ClReceiverController::class, 'store'])->name('clRecipientStore');
+    // CL recipient edit
+    Route::get('recipient-edit/{templatePath}/{recipientId}',[ClReceiverController::class, 'edit'])->name('clRecipientEdit');
+    // CL recipient uupdate
+    Route::post('recipient-update/{templatePath}/{recipientId}',[ClReceiverController::class, 'update'])->name('clRecipientUpdate');
 
-
-    Route::get('/cltemp1', function () {
-        return view('Template/CoverLetterTemplates/clTemplate1');
-    });
-    Route::get('/cltemp2', function () {
-        return view('Template/CoverLetterTemplates/clTemplate2');
-    });
-    Route::get('/cltemp3', function () {
-        return view('Template/CoverLetterTemplates/clTemplate3');
-    });
-    Route::get('/cltemp4', function () {
-        return view('Template/CoverLetterTemplates/clTemplate4');
-    });
+    //Cover Letters
+    Route::get('/cascade-template', [CoverletterController::class, 'cascadeTemplate'])->name('cascade-template');
+    Route::get('/crisp-template', [CoverletterController::class, 'crispTemplate'])->name('crisp-template');
+    Route::get('/influx-template', [CoverletterController::class, 'influxTemplate'])->name('influx-template');
+    Route::get('/iconic-template', [CoverletterController::class, 'iconicTemplate'])->name('iconic-template');
 });
 // CV
 // Route::get('/cvtemp1/{image}/{color}', function ($image, $color) {
