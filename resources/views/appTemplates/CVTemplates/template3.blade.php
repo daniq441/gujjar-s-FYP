@@ -140,10 +140,10 @@
                         <div class="mt-4 font-11">
                             <div class="fw-bold">Address</div>
                             {{-- <div>Bhubhtian,Lahore,5100</div> --}}
-                            <div>{{ $user_detail->address }}, {{ $user_detail->city }}, {{ $user_detail->postalcode }}</div>
-                            {{-- <div class="fw-bold">Phone</div> --}}
+                            <div>{{ $user_detail->city }}, {{ $user_detail->country }}, {{ $user_detail->postalcode }}</div>
+                            <div class="fw-bold">Phone</div>
                             <div>{{ $user_detail->phone }}</div>
-                            <div>+923056989967</div>
+                            {{-- <div>+923056989967</div> --}}
                             <div class="fw-bold">Email</div>
                             {{-- <div>sg03056924122@gmail.com</div> --}}
                             <div>{{ $user_detail->email }}</div>

@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href={{asset('css/Templates_css/cvTemplates/template2.css')}} rel="stylesheet">
+    {{-- <link href={{asset('css/bootstrap-5.0.2-dist/css/bootstrap.min.css')}} rel="stylesheet"> --}}
     <title>Template2</title>
 </head>
 
@@ -36,7 +36,7 @@
                         </div>
                         <div class="mt-3 font-11 p-2">
                             <div class="fw-bold">Address</div>
-                            <div>{{ $user_detail->address }}, {{ $user_detail->city }}, {{ $user_detail->postalcode }}</div>
+                            <div>{{ $user_detail->city }}, {{ $user_detail->country }}, {{ $user_detail->postalcode }}</div>
                             {{-- <div>Bhubhtian,Lahore,5100</div> --}}
                             <div class="fw-bold">Phone</div>
                             <div>{{ $user_detail->phone }}</div>
@@ -180,9 +180,7 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

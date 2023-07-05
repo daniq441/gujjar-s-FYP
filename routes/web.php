@@ -200,6 +200,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/cvtemp2/{image}/{color}/{bg_color}',  [CvController::class, 'template2']);
     Route::get('/cvtemp3/{image}/{color}/{bg_color}',  [CvController::class, 'template3']);
 
+    Route::get('/cvDownload/{image}/{color}/{bg_color}/{templatePath}', [CvController::class, 'bgDownloadCV']);
+    Route::get('/cvDownload/{image}/{color}/{templatePath}', [CvController::class, 'downloadCV']);
+
     // Cover Letter
     Route::get('CL-detail/{templatePath}',[CoverletterController::class, 'index'])->name('detailCoverletter');
     // Information delete

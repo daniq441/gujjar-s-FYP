@@ -97,7 +97,7 @@
                     {{-- @if($image == 'yes') --}}
                     <div class="form-group">
                         <label class="control-label" for="profile">Profile photo (<span class="text-danger">Add profile if you select template with image</span>)</label>
-                        <input type="file" name="profile" placeholder="(i.e). abc123@gmail.com" maxlength="50" class="form-control" id="profile" value="" onchange="profile_pic()">
+                        <input type="file" name="profile" maxlength="50" class="form-control" id="profile" value="" onchange="profile_pic()">
                         <div id="profile-error" class="text-danger"></div>
                     </div>
                     {{-- @endif --}}
